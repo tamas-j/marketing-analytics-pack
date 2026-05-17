@@ -21,10 +21,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Worked customer journey measurement example for an ecommerce skincare brand.
 - `/clv-scenario` command and `clv-scenario-modeller` skill for lightweight CLV scenario planning.
 - Worked CLV scenario example for subscription acquisition economics.
+- `/root-cause-tree` command and `root-cause-investigation-tree` skill for structured metric movement diagnosis.
+- Worked root cause example for an ecommerce revenue drop.
+- `/analysis-brief`, `/churn-driver-narrative`, and `/campaign-post-mortem` commands with backing Diagnosis skills.
+- Worked Diagnosis examples for repeat purchase analysis planning, subscription churn, and campaign review.
 
 ### Planned
 - Metrics cluster examples and screenshots for README polish
-- Remaining skills across Diagnosis, Segmentation, Experimentation, Forecasting, and Marketing operations clusters
+- Diagnosis cluster examples and screenshots for README polish
+- Remaining skills across Segmentation, Experimentation, Forecasting, and Marketing operations clusters
 - Advanced runners: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian)
 - Sample datasets + screenshot gallery for README and marketplace submission
 - `scripts/validate.py` for JSON / YAML / manifest sanity checks before push
