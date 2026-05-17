@@ -2,7 +2,7 @@
 
 A coherent skills pack that helps non-technical marketing and analytics people do real analytical work in Claude — guided by a main planner, validated by a data readiness checker, and rendered through a shared visual style system.
 
-> **Status:** 0.1.1 — scaffold only. First skill (KPI tree generator) lands shortly. Track progress in [CHANGELOG.md](./CHANGELOG.md).
+> **Status:** 0.1.1 — scaffold plus shared visual style system. First proof-of-pattern skill (KPI tree generator) lands shortly. Track progress in [CHANGELOG.md](./CHANGELOG.md).
 
 ## Why this exists
 

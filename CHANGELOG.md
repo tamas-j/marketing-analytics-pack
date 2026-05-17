@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Shared visual style system: `lib/styles/default.yaml`, `lib/styles/executive.yaml`, `lib/styles/custom.yaml`, and thin `lib/visualize.py` style reader.
+- `skills/data-visualization/` reference skill with reusable matplotlib chart patterns.
+- `/style` command workflow for selecting or customising the active chart style.
+
 ### Planned
-- Shared visual style system: `lib/styles/*.yaml` (runtime config) + thin `lib/visualize.py` (style reader / palette helper) + `skills/data-visualization/` reference skill with chart code patterns.
 - Front-door skills: Style picker, Main analysis planner, Data readiness checker
 - KPI tree generator (first proof-of-pattern skill)
 - Remaining 24 skills across Metrics, Diagnosis, Segmentation, Experimentation, Forecasting, and Marketing operations clusters

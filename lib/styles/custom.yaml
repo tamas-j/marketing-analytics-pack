@@ -1,0 +1,45 @@
+name: custom
+description: "User-editable style. The /style command updates this file."
+
+brand:
+  primary_hex: "#2563eb"
+  logo_path: ""
+  font_family: "Arial"
+
+chart:
+  background: "#ffffff"
+  foreground: "#111827"
+  muted: "#6b7280"
+  grid: "#e5e7eb"
+  positive: "#16a34a"
+  negative: "#dc2626"
+  warning: "#d97706"
+
+palette:
+  categorical:
+    - "#2563eb"
+    - "#14b8a6"
+    - "#f97316"
+    - "#8b5cf6"
+    - "#64748b"
+    - "#e11d48"
+  sequential:
+    - "#dbeafe"
+    - "#93c5fd"
+    - "#3b82f6"
+    - "#1d4ed8"
+    - "#1e3a8a"
+
+typography:
+  title_size: 16
+  subtitle_size: 11
+  label_size: 10
+  tick_size: 9
+  note_size: 8
+
+layout:
+  figure_width: 9
+  figure_height: 5
+  dpi: 160
+  title_pad: 14
+  source_note: "Source: analysis generated in Claude"

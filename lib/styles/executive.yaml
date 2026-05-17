@@ -1,0 +1,45 @@
+name: executive
+description: "Restrained boardroom style for senior stakeholder outputs."
+
+brand:
+  primary_hex: "#0f766e"
+  logo_path: ""
+  font_family: "Arial"
+
+chart:
+  background: "#ffffff"
+  foreground: "#0f172a"
+  muted: "#475569"
+  grid: "#cbd5e1"
+  positive: "#15803d"
+  negative: "#b91c1c"
+  warning: "#b45309"
+
+palette:
+  categorical:
+    - "#0f766e"
+    - "#334155"
+    - "#0369a1"
+    - "#a16207"
+    - "#7c3aed"
+    - "#be123c"
+  sequential:
+    - "#ccfbf1"
+    - "#5eead4"
+    - "#14b8a6"
+    - "#0f766e"
+    - "#134e4a"
+
+typography:
+  title_size: 15
+  subtitle_size: 10
+  label_size: 10
+  tick_size: 9
+  note_size: 8
+
+layout:
+  figure_width: 9
+  figure_height: 5
+  dpi: 180
+  title_pad: 14
+  source_note: "Source: analysis generated in Claude"
