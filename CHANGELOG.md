@@ -25,11 +25,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Worked root cause example for an ecommerce revenue drop.
 - `/analysis-brief`, `/churn-driver-narrative`, and `/campaign-post-mortem` commands with backing Diagnosis skills.
 - Worked Diagnosis examples for repeat purchase analysis planning, subscription churn, and campaign review.
+- Segmentation command set: `/segmentation-method`, `/persona-to-segment`, `/audience-overlap`, and `/rfm-segment`.
+- Worked Segmentation examples for method selection, persona translation, audience overlap, and RFM.
 
 ### Planned
 - Metrics cluster examples and screenshots for README polish
 - Diagnosis cluster examples and screenshots for README polish
-- Remaining skills across Segmentation, Experimentation, Forecasting, and Marketing operations clusters
+- Segmentation cluster examples and screenshots for README polish
+- Remaining skills across Experimentation, Forecasting, and Marketing operations clusters
 - Advanced runners: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian)
 - Sample datasets + screenshot gallery for README and marketplace submission
 - `scripts/validate.py` for JSON / YAML / manifest sanity checks before push

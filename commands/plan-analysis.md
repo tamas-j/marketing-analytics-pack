@@ -35,7 +35,7 @@ Use skill: "data-readiness-checker"
 | "I don't know what to measure" | `/kpi-tree` | Build the measurement framework first. |
 | "Can my file support this analysis?" | `/check-data` | Validate grain, columns, missingness, and time coverage. |
 | "Why did this metric move?" | Root cause investigation tree | Planned diagnosis command. |
-| "Which customers should we target?" | Segmentation method selector | Planned segmentation command. |
+| "Which customers should we target?" | `/segmentation-method` | Choose the right segmentation approach first. |
 | "Did this campaign work?" | Incrementality test designer or campaign post-mortem | Planned experimentation/diagnosis commands. |
 | "What will happen next month?" | Forecast method selector | Planned forecasting command. |
 | "How should I explain this result?" | Analysis brief or post-mortem generator | Planned narrative command. |
