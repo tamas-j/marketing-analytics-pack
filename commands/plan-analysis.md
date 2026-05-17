@@ -36,9 +36,13 @@ Use skill: "data-readiness-checker"
 | "Can my file support this analysis?" | `/check-data` | Validate grain, columns, missingness, and time coverage. |
 | "Why did this metric move?" | Root cause investigation tree | Planned diagnosis command. |
 | "Which customers should we target?" | `/segmentation-method` | Choose the right segmentation approach first. |
-| "Did this campaign work?" | Incrementality test designer or campaign post-mortem | Planned experimentation/diagnosis commands. |
+| "Did this campaign work?" | `/campaign-post-mortem` | Summarise observed performance and caveats. |
 | "What will happen next month?" | Forecast method selector | Planned forecasting command. |
-| "How should I explain this result?" | Analysis brief or post-mortem generator | Planned narrative command. |
+| "How should I explain this result?" | `/analysis-brief` or `/campaign-post-mortem` | Plan or summarise the analysis. |
+| "Why is my campaign list so small?" | `/suppression-waterfall` | Explain eligibility, consent, contactability, and business-rule losses. |
+| "Are our UTMs/names clean enough?" | `/marketing-taxonomy-auditor` | Audit taxonomy consistency and reporting risk. |
+| "Are we over-contacting customers?" | `/frequency-cap-fatigue` | Diagnose fatigue and recommend caps. |
+| "Which action should each customer get?" | `/nba-logic` | Design next-best-action rules and guardrails. |
 
 ## Output Format
 

@@ -27,12 +27,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Worked Diagnosis examples for repeat purchase analysis planning, subscription churn, and campaign review.
 - Segmentation command set: `/segmentation-method`, `/persona-to-segment`, `/audience-overlap`, and `/rfm-segment`.
 - Worked Segmentation examples for method selection, persona translation, audience overlap, and RFM.
+- Marketing operations command set: `/suppression-waterfall`, `/marketing-taxonomy-auditor`, `/frequency-cap-fatigue`, and `/nba-logic`.
+- Worked Marketing operations examples for audience suppression, taxonomy audit, fatigue, and next-best-action logic.
 
 ### Planned
 - Metrics cluster examples and screenshots for README polish
 - Diagnosis cluster examples and screenshots for README polish
 - Segmentation cluster examples and screenshots for README polish
-- Remaining skills across Experimentation, Forecasting, and Marketing operations clusters
+- Marketing operations cluster examples and screenshots for README polish
+- Remaining skills across Experimentation and Forecasting clusters
 - Advanced runners: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian)
 - Sample datasets + screenshot gallery for README and marketplace submission
 - `scripts/validate.py` for JSON / YAML / manifest sanity checks before push
