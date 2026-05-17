@@ -11,10 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Shared visual style system: `lib/styles/default.yaml`, `lib/styles/executive.yaml`, `lib/styles/custom.yaml`, and thin `lib/visualize.py` style reader.
 - `skills/data-visualization/` reference skill with reusable matplotlib chart patterns.
 - `/style` command workflow for selecting or customising the active chart style.
+- `/kpi-tree` command and `kpi-tree-generator` skill for the first proof-of-pattern marketing analytics workflow.
+- Worked KPI tree example for a subscription retention use case.
+- `/plan-analysis` and `/check-data` front-door commands, backed by `main-analysis-planner` and `data-readiness-checker` skills.
+- Front-door example showing how the planner routes a campaign effectiveness question.
 
 ### Planned
-- Front-door skills: Style picker, Main analysis planner, Data readiness checker
-- KPI tree generator (first proof-of-pattern skill)
 - Remaining 24 skills across Metrics, Diagnosis, Segmentation, Experimentation, Forecasting, and Marketing operations clusters
 - Advanced runners: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian)
 - Sample datasets + screenshot gallery for README and marketplace submission

@@ -2,7 +2,7 @@
 
 A coherent skills pack that helps non-technical marketing and analytics people do real analytical work in Claude — guided by a main planner, validated by a data readiness checker, and rendered through a shared visual style system.
 
-> **Status:** 0.1.1 — scaffold plus shared visual style system. First proof-of-pattern skill (KPI tree generator) lands shortly. Track progress in [CHANGELOG.md](./CHANGELOG.md).
+> **Status:** 0.1.1 — scaffold plus shared visual style system, front-door workflows (`/style`, `/plan-analysis`, `/check-data`), and first proof-of-pattern workflow (`/kpi-tree`). Track progress in [CHANGELOG.md](./CHANGELOG.md).
 
 ## Why this exists
 
@@ -62,11 +62,11 @@ _Coming with the first published skill — README will be updated with a gallery
 
 ## Example flow
 
-_Coming with the first published skill._
+See [examples/front-door-example.md](./examples/front-door-example.md) and [examples/kpi-tree-example.md](./examples/kpi-tree-example.md) for the first worked examples.
 
 ## Roadmap
 
-See [URB-182](https://linear.app/urbsai/issue/URB-182/marketing-analytics-plugin-skills-pack-v1) for the full build order. In short: scaffold → style system → KPI tree generator → remaining front-door skills → lightweight clusters → experimentation → segmentation + forecasting → advanced runners → polish → publish.
+See [URB-182](https://linear.app/urbsai/issue/URB-182/marketing-analytics-plugin-skills-pack-v1) for the full build order. In short: scaffold → style system + front door → KPI tree generator → lightweight clusters → experimentation → segmentation + forecasting → advanced runners → polish → publish.
 
 ## License
 
