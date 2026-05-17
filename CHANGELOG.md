@@ -29,13 +29,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Worked Segmentation examples for method selection, persona translation, audience overlap, and RFM.
 - Marketing operations command set: `/suppression-waterfall`, `/marketing-taxonomy-auditor`, `/frequency-cap-fatigue`, and `/nba-logic`.
 - Worked Marketing operations examples for audience suppression, taxonomy audit, fatigue, and next-best-action logic.
+- Experimentation batch 1: `/experiment-design-reviewer`, `/incrementality-test-designer`, and `/attribution-model-selector`.
+- Worked Experimentation examples for A/B test review, geo incrementality design, and attribution approach selection.
 
 ### Planned
 - Metrics cluster examples and screenshots for README polish
 - Diagnosis cluster examples and screenshots for README polish
 - Segmentation cluster examples and screenshots for README polish
 - Marketing operations cluster examples and screenshots for README polish
-- Remaining skills across Experimentation and Forecasting clusters
+- Remaining Experimentation skills: MMM readiness checker, MMM runner, MMM result interpreter
+- Remaining Forecasting skills: Forecast method selector and Forecast runner
 - Advanced runners: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian)
 - Sample datasets + screenshot gallery for README and marketplace submission
 - `scripts/validate.py` for JSON / YAML / manifest sanity checks before push

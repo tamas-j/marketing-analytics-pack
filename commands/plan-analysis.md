@@ -36,7 +36,9 @@ Use skill: "data-readiness-checker"
 | "Can my file support this analysis?" | `/check-data` | Validate grain, columns, missingness, and time coverage. |
 | "Why did this metric move?" | Root cause investigation tree | Planned diagnosis command. |
 | "Which customers should we target?" | `/segmentation-method` | Choose the right segmentation approach first. |
-| "Did this campaign work?" | `/campaign-post-mortem` | Summarise observed performance and caveats. |
+| "Did this campaign work?" | `/campaign-post-mortem` or `/incrementality-test-designer` | Use post-mortem for observed performance; incrementality for causal impact. |
+| "Can we trust this A/B test?" | `/experiment-design-reviewer` | Review hypothesis, control, randomisation, metrics, and risks. |
+| "Which attribution model should we use?" | `/attribution-model-selector` | Choose the measurement approach and caveats. |
 | "What will happen next month?" | Forecast method selector | Planned forecasting command. |
 | "How should I explain this result?" | `/analysis-brief` or `/campaign-post-mortem` | Plan or summarise the analysis. |
 | "Why is my campaign list so small?" | `/suppression-waterfall` | Explain eligibility, consent, contactability, and business-rule losses. |
