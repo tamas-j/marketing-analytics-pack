@@ -15,9 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Worked KPI tree example for a subscription retention use case.
 - `/plan-analysis` and `/check-data` front-door commands, backed by `main-analysis-planner` and `data-readiness-checker` skills.
 - Front-door example showing how the planner routes a campaign effectiveness question.
+- `/metric-spec-card` command and `metric-spec-card-generator` skill for precise metric definitions.
+- Worked metric spec example for ecommerce repeat purchase rate.
+- `/customer-journey-measurement` command and framework skill for lifecycle-stage measurement design.
+- Worked customer journey measurement example for an ecommerce skincare brand.
+- `/clv-scenario` command and `clv-scenario-modeller` skill for lightweight CLV scenario planning.
+- Worked CLV scenario example for subscription acquisition economics.
 
 ### Planned
-- Remaining 24 skills across Metrics, Diagnosis, Segmentation, Experimentation, Forecasting, and Marketing operations clusters
+- Metrics cluster examples and screenshots for README polish
+- Remaining skills across Diagnosis, Segmentation, Experimentation, Forecasting, and Marketing operations clusters
 - Advanced runners: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian)
 - Sample datasets + screenshot gallery for README and marketplace submission
 - `scripts/validate.py` for JSON / YAML / manifest sanity checks before push

@@ -2,7 +2,7 @@
 
 A coherent skills pack that helps non-technical marketing and analytics people do real analytical work in Claude — guided by a main planner, validated by a data readiness checker, and rendered through a shared visual style system.
 
-> **Status:** 0.1.1 — scaffold plus shared visual style system, front-door workflows (`/style`, `/plan-analysis`, `/check-data`), and first proof-of-pattern workflow (`/kpi-tree`). Track progress in [CHANGELOG.md](./CHANGELOG.md).
+> **Status:** 0.1.1 — scaffold plus shared visual style system, front-door workflows (`/style`, `/plan-analysis`, `/check-data`), and the Metrics command set (`/kpi-tree`, `/metric-spec-card`, `/customer-journey-measurement`, `/clv-scenario`). Track progress in [CHANGELOG.md](./CHANGELOG.md).
 
 ## Why this exists
 
@@ -62,7 +62,7 @@ _Coming with the first published skill — README will be updated with a gallery
 
 ## Example flow
 
-See [examples/front-door-example.md](./examples/front-door-example.md) and [examples/kpi-tree-example.md](./examples/kpi-tree-example.md) for the first worked examples.
+See [examples/front-door-example.md](./examples/front-door-example.md), [examples/kpi-tree-example.md](./examples/kpi-tree-example.md), [examples/metric-spec-card-example.md](./examples/metric-spec-card-example.md), [examples/customer-journey-measurement-example.md](./examples/customer-journey-measurement-example.md), and [examples/clv-scenario-example.md](./examples/clv-scenario-example.md) for the first worked examples.
 
 ## Roadmap
 
