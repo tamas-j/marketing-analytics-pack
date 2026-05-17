@@ -1,0 +1,35 @@
+{
+  "name": "marketing-analytics-pack",
+  "displayName": "Marketing Analytics Pack for Claude",
+  "version": "0.1.0",
+  "description": "A coherent skills pack that helps non-technical marketing and analytics people do real analytical work in Claude — guided by a main planner, validated by a data readiness checker, and rendered through a shared visual style system.",
+  "author": {
+    "name": "Tamas Juhasz",
+    "url": "https://github.com/tamas-j"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/tamas-j/marketing-analytics-pack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tamas-j/marketing-analytics-pack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tamas-j/marketing-analytics-pack/issues"
+  },
+  "keywords": [
+    "marketing",
+    "analytics",
+    "kpi",
+    "segmentation",
+    "experimentation",
+    "mmm",
+    "forecasting",
+    "claude-skills",
+    "claude-plugin"
+  ],
+  "categories": [
+    "marketing",
+    "data"
+  ],
+  "skills": []
+}
