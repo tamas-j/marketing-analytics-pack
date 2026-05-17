@@ -3,18 +3,21 @@
 Working memory for the `marketing-analytics-pack` plugin build. Future turns: read this first; deeper context lives in `memory/`.
 
 ## Project
-**Marketing Analytics Pack for Claude** (`marketing-analytics-pack`), v0.1.0, MIT.
+**Marketing Analytics Pack for Claude** (`marketing-analytics-pack`), v0.1.1, MIT.
 A coherent skills pack (25 skills, 7 clusters) for non-technical marketing/analytics users. Tracked in Linear as **URB-182** (parent: URB-181, project: Experiments, team: Urbsai).
 
 ## Locked decisions
 | Decision | Value |
 |----------|-------|
 | GitHub handle | `tamas-j` |
-| Repo | https://github.com/tamas-j/marketing-analytics-pack (not yet pushed) |
+| Repo | https://github.com/tamas-j/marketing-analytics-pack (live, v0.1.0 tagged; v0.1.1 in flight) |
 | Plugin name | `marketing-analytics-pack` (`-pack` suffix — `marketing-analytics` taken on claudepluginhub) |
-| Display name | "Marketing Analytics Pack for Claude" |
+| Display name | "Marketing Analytics Pack for Claude" (README only — not a manifest field) |
 | License | MIT |
-| Initial version | 0.1.0 (semver) |
+| Manifest path | `.claude-plugin/plugin.json` — *not* `plugin.json` at the repo root (Anthropic convention) |
+| Manifest schema | Exactly 4 fields: `name`, `version`, `description`, `author`. Nothing else (no `displayName`, `keywords`, `categories`, `repository`, `skills`, etc.) |
+| Name regex | `^[a-z0-9][a-z0-9-]{1,63}$`, no hidden Unicode (marketplace invariants I10/I11) |
+| Initial version | 0.1.0 → 0.1.1 (manifest-path fix; see CHANGELOG) |
 | MMM library | **Google Meridian** (chosen over PyMC-Marketing) |
 | Forecast library | **Prophet** |
 | Data input scope (v1) | Files only — CSV / Excel / paste. DB access deferred, documented in README. |
@@ -22,9 +25,18 @@ A coherent skills pack (25 skills, 7 clusters) for non-technical marketing/analy
 
 ## Architecture (the spine)
 - **Tiered skills.** Most are **core skills** (prompt + matplotlib, install in seconds): planner, readiness checker, style picker, all selectors / generators / interpreters / framework builders. Three are **advanced runners** with heavier deps declared and pip-installed on first use: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian).
-- **Shared visual style system.** Every skill that produces visuals imports `/lib/visualize.py` and reads from `/lib/styles/*.yaml`. Bundled styles: `default`, `executive`, `custom`. A front-door **Style picker** skill lets the user select or customise. Visual consistency is **core infrastructure, not decoration** — mirrors Tamas's CV line at RAPP ("Established data visualisation standards adopted by a 5-person BI team").
+- **Commands vs skills — separate peer directories (financial-services pattern).** Two flavours, two folders:
+  - **`commands/<name>.md`** — slash commands the user invokes (`/kpi-tree`, `/check-data`, `/style`, `/forecast`). Frontmatter: `description` + `argument-hint`. **No `name:` field — filename is the command name.** Most of our 25 entries live here.
+  - **`skills/<name>/SKILL.md`** — composable knowledge units commands pull in via `Use skill: "<name>"`. Frontmatter: `description` (with "Use when…" trigger), optional `user-invocable: false` for pure model-only. The `data-visualization` reference skill is the canonical example. Skills can have `references/` (static support files) and `scripts/` (Python the skill runs) subdirs.
+  - Commands **compose** skills. One command can pull in several skills (e.g. `/forecast` pulls in `skills/forecast-methods/` and `skills/data-visualization/`).
+  - Cross-plugin invocation uses `/<plugin-name>:<command>` namespacing — `/marketing-analytics-pack:kpi-tree` when called from outside the plugin; bare `/kpi-tree` from inside the user's loaded session.
+- **Shared visual style system (revised in v0.1.1).** Three layers:
+  1. **Chart code patterns** live in a `data-visualization` *reference skill* (`skills/data-visualization/SKILL.md`). Skills don't import code — Claude copies the patterns into generated Python at runtime. Matches Anthropic's `knowledge-work-plugins/data` pattern.
+  2. **Brand / palette / typography config** lives in `lib/styles/*.yaml` (`default`, `executive`, `custom`). Each YAML carries optional `brand: { primary_hex, logo_path, font_family }` slots.
+  3. **A thin `lib/visualize.py` helper** reads the active style YAML and exposes a small palette/typography API. Not an import target for chart drawing — just a config reader.
+  - Front-door **Style picker** skill walks the user through choices and writes `lib/styles/custom.yaml`. Visual consistency is **core infrastructure, not decoration** — mirrors Tamas's CV line at RAPP ("Established data visualisation standards adopted by a 5-person BI team").
 - **Entry point = Main analysis planner.** It diagnoses the user's need and routes them to the right skill. **Data readiness checker** validates input before any work starts. These two plus Style picker are the "front door."
-- **Files-only input** for v1. README documents the workaround for warehouse users: "connect your warehouse MCP and describe the table to Claude" (works today, just not built in).
+- **Files-only input** for v1. README documents the workaround for warehouse users: "connect your warehouse MCP and describe the table to Claude" (works today, just not built in). v2 will add `.mcp.json` for direct warehouse connectors.
 
 ## Target user
 Non-technical marketing/analytics person who wants to do real analytical work but doesn't know how to start. SKILL.md "Required inputs" sections must be written for non-technical readers.
@@ -32,27 +44,37 @@ Non-technical marketing/analytics person who wants to do real analytical work bu
 ## Repo structure
 ```
 marketing-analytics-pack/
-├── plugin.json          # manifest
+├── .claude-plugin/
+│   └── plugin.json      # manifest (4 fields: name, version, description, author)
 ├── README.md
 ├── LICENSE              # MIT
-├── CHANGELOG.md         # Keep a Changelog, starts at 0.1.0
+├── CHANGELOG.md         # Keep a Changelog
 ├── .gitignore
-├── CLAUDE.md            # ← this file
-├── skills/              # one folder per skill (SKILL.md + assets)
-├── lib/                 # shared visual style + helpers
+├── CLAUDE.md            # ← this file (developer memory)
+├── commands/            # slash commands — one .md per command (no name field, filename = command name)
+├── skills/              # composable knowledge — one folder per skill, SKILL.md + optional references/ + scripts/
+├── lib/                 # brand/style config + thin reader (no chart code)
 │   └── styles/          # default.yaml / executive.yaml / custom.yaml
+├── scripts/             # validate.py (manifest + YAML lint), other repo tooling
 ├── docs/                # design notes, conventions, contribution guide
 ├── examples/            # sample datasets + worked example flows
 └── memory/              # deep memory (people, projects, context)
 ```
 
 ## Conventions
-- **SKILL.md** for every skill. Required-inputs section written for non-technical users. Bundled `assets/` and `references/` as needed.
-- **Visual output** always goes through `lib/visualize.py`. Skills must not hand-roll matplotlib styles — pull from the shared style config.
+- **Commands (`commands/*.md`):** frontmatter is `description` + `argument-hint`. No `name:` field — the filename is the command name. Body is the workflow: numbered steps, "Use skill: \"<name>\"" calls to pull in shared knowledge, examples, tips. Reference: `plugins/vertical-plugins/financial-analysis/commands/dcf.md` in the financial-services audit.
+- **Skills (`skills/<name>/SKILL.md`):** required-inputs section for a non-technical reader. Optional `references/` (static support files — templates, examples, dialect notes — the `data-context-extractor` pattern) and `scripts/` (Python the skill runs — the `data-context-extractor` + advanced-runner pattern) subdirs.
+- **Frontmatter:**
+  - Commands: `description`, `argument-hint`. No `name:`.
+  - Model-invoked skills: `description` ("Use when…" pattern). Add `user-invocable: false` for pure model-only.
+  - Multi-mode skills: `description: >` block scalar with "MODE A Triggers: …" / "MODE B Triggers: …" sections (the `data-context-extractor` pattern).
+  - `description` is 10–2000 chars, no leading/trailing whitespace, no hidden Unicode.
+- **Visual output.** Skills copy chart patterns from the `data-visualization` reference skill into the Python they generate. They read style config via the thin `lib/visualize.py` helper (palette, typography, brand fields). Skills must not hand-roll style; pull from the active style YAML.
 - **Dependencies.** Core skills assume only the standard pack runtime (matplotlib included). Advanced runners declare their extra deps explicitly and pip-install on first invocation; never assume Prophet / Meridian / scikit is present in a core skill.
-- **CHANGELOG.md** must stay in lockstep with `plugin.json` version — common marketplace rejection cause.
+- **CHANGELOG.md** must stay in lockstep with `.claude-plugin/plugin.json` `version` — common marketplace rejection cause.
 - **Semver** for releases. 0.x = pre-stable; bumping to 1.0.0 when the full 25-skill pack ships.
-- **File naming:** lowercase, hyphens (`kpi-tree-generator`, `mmm-readiness-checker`).
+- **File naming:** lowercase, hyphens (`kpi-tree-generator`, `mmm-readiness-checker`). Skill directory name **must** match the `name` field in its SKILL.md frontmatter — slash commands in prose are dead if they don't.
+- **Validation before push:** run `scripts/validate.py` — JSON loads manifest, YAML loads every style file, frontmatter has required fields, names match invariants I1–I11.
 - **Each cluster could spawn a sub-ticket** if the build runs long; otherwise tracked via the checklist in URB-182.
 
 ## Build order (URB-182 §"Order of operations")
@@ -91,8 +113,9 @@ marketing-analytics-pack/
 - [ ] Create profile README repo (`tamas-j/tamas-j`) — short pitch + link to the plugin, ship after first skill is live
 
 ## Status (live)
-- ✅ **0.1.0 scaffold** — folder structure, `plugin.json`, MIT `LICENSE`, `CHANGELOG.md`, README skeleton, `.gitignore`, this `CLAUDE.md`.
-- ⏭ **Next:** Task #2 — shared visual style system (`lib/visualize.py` + `lib/styles/*.yaml` + Style picker skill).
+- ✅ **0.1.0 scaffold** pushed to GitHub: folder structure, manifest, LICENSE, CHANGELOG, README skeleton, .gitignore, CLAUDE.md.
+- 🛠 **0.1.1 in flight (this turn)** — manifest moved to `.claude-plugin/plugin.json`, schema stripped to 4 fields, visual style architecture revised after auditing `claude-for-legal` + `knowledge-work-plugins/data`.
+- ⏭ **Next:** Task #2 — shared visual style system (`lib/styles/*.yaml` + thin `lib/visualize.py` reader + `data-visualization` reference skill + Style picker front-door skill).
 - ⏭ **After that:** Task #3 — KPI tree generator (proof-of-pattern first skill).
 
 → Deeper context: `memory/projects/marketing-analytics-pack.md`, `memory/context/build-conventions.md`, `memory/glossary.md`

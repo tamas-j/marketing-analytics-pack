@@ -2,7 +2,7 @@
 
 A coherent skills pack that helps non-technical marketing and analytics people do real analytical work in Claude — guided by a main planner, validated by a data readiness checker, and rendered through a shared visual style system.
 
-> **Status:** 0.1.0 — scaffold only. First skill (KPI tree generator) lands shortly. Track progress in [CHANGELOG.md](./CHANGELOG.md).
+> **Status:** 0.1.1 — scaffold only. First skill (KPI tree generator) lands shortly. Track progress in [CHANGELOG.md](./CHANGELOG.md).
 
 ## Why this exists
 
@@ -15,9 +15,7 @@ A non-technical marketing or analytics person who wants to do real analytical wo
 ## Install
 
 ```
-# (coming with first published release)
-/plugin marketplace add tamas-j/marketing-analytics-pack
-/plugin install marketing-analytics-pack@tamas-j
+claude plugins add tamas-j/marketing-analytics-pack
 ```
 
 Also planned for distribution via the official Anthropic plugin marketplace and 1–2 third-party Claude marketplaces.
@@ -38,7 +36,7 @@ Also planned for distribution via the official Anthropic plugin marketplace and 
 
 Skills are tiered by install weight. Most are **core skills** — prompt + matplotlib, install in seconds. A handful are **advanced runners** (RFM, Forecast/Prophet, MMM/Meridian) that declare heavier dependencies and pip-install them on first use.
 
-Every skill that produces visuals reads from a **shared style system** (`lib/visualize.py`, `lib/styles/*.yaml`). Three bundled styles — `default`, `executive`, `custom` — plus a front-door **Style picker** skill. The point is that output across the whole pack is cohesive, screenshot-worthy, and copy-pasteable.
+Every skill that produces visuals follows a **shared style system**: chart code patterns live in a `data-visualization` reference skill (Claude copies them into generated code at runtime), brand and palette settings live in `lib/styles/*.yaml` (read at runtime by a thin helper), and a front-door **Style picker** skill lets you select or customise a style. Three bundled styles — `default`, `executive`, `custom` — plus optional brand mode (logo, primary colour, font). The point is that output across the whole pack is cohesive, screenshot-worthy, and copy-pasteable.
 
 ## Data input (v1)
 
@@ -48,9 +46,11 @@ Files only — CSV, Excel, or pasted data. Database access is deferred to a late
 
 ```
 marketing-analytics-pack/
-├── plugin.json          # plugin manifest
-├── skills/              # one folder per skill (SKILL.md + assets)
-├── lib/                 # shared visual style + helpers
+├── .claude-plugin/
+│   └── plugin.json      # plugin manifest (name, version, description, author)
+├── commands/            # slash commands users invoke (e.g. /kpi-tree, /style, /forecast)
+├── skills/              # composable knowledge units commands pull in (chart patterns, method comparisons, etc.)
+├── lib/                 # shared brand/style config + a thin reader
 │   └── styles/          # default / executive / custom YAML
 ├── docs/                # design notes, conventions, contribution guide
 └── examples/            # sample datasets + worked example flows
