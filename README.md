@@ -14,15 +14,27 @@ A non-technical marketing or analytics person who wants to do real analytical wo
 
 ## Install
 
+Add the marketplace once, then install the plugin.
+
+From a shell (Claude Code CLI):
+
 ```
-claude plugins add tamas-j/marketing-analytics-pack
+claude plugin marketplace add tamas-j/marketing-analytics-pack
+claude plugin install marketing-analytics-pack@marketing-analytics-pack
 ```
 
-Also planned for distribution via the official Anthropic plugin marketplace and 1–2 third-party Claude marketplaces.
+From inside an interactive Claude session:
+
+```
+/plugin marketplace add tamas-j/marketing-analytics-pack
+/plugin install marketing-analytics-pack
+```
+
+Also planned for distribution via the official Anthropic plugin marketplace and 1–2 third-party Claude marketplaces; once listed there, `/plugin install marketing-analytics-pack@<marketplace>` will work without the marketplace-add step.
 
 ## What's in the pack
 
-25 skills across 7 clusters. The full checklist lives in the [URB-182 ticket](https://linear.app/urbsai/issue/URB-182/marketing-analytics-plugin-skills-pack-v1); high level:
+27 slash commands plus a `data-visualization` reference skill, across 7 clusters. The full checklist lives in the [URB-182 ticket](https://linear.app/urbsai/issue/URB-182/marketing-analytics-plugin-skills-pack-v1); high level:
 
 - **Front door** — Style picker, Main analysis planner, Data readiness checker
 - **Metrics** — KPI tree generator, Metric spec card generator, CLV scenario modeller, Customer journey measurement framework
@@ -53,7 +65,8 @@ marketing-analytics-pack/
 ├── lib/                 # shared brand/style config + a thin reader
 │   └── styles/          # default / executive / custom YAML
 ├── docs/                # design notes, conventions, contribution guide
-└── examples/            # sample datasets + worked example flows
+├── examples/            # sample datasets + worked example flows
+└── scripts/             # validate.py and other repo tooling
 ```
 
 ## Screenshots

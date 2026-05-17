@@ -34,7 +34,7 @@ Use skill: "data-readiness-checker"
 |---|---|---|
 | "I don't know what to measure" | `/kpi-tree` | Build the measurement framework first. |
 | "Can my file support this analysis?" | `/check-data` | Validate grain, columns, missingness, and time coverage. |
-| "Why did this metric move?" | Root cause investigation tree | Planned diagnosis command. |
+| "Why did this metric move?" | `/root-cause-tree` | Diagnose the drivers with a structured investigation tree. |
 | "Which customers should we target?" | `/segmentation-method` | Choose the right segmentation approach first. |
 | "Did this campaign work?" | `/campaign-post-mortem` or `/incrementality-test-designer` | Use post-mortem for observed performance; incrementality for causal impact. |
 | "Can we trust this A/B test?" | `/experiment-design-reviewer` | Review hypothesis, control, randomisation, metrics, and risks. |

@@ -1,3 +1,8 @@
+# Custom style - clone of default.yaml. The /style command modifies the
+# brand block (and only the brand block) in place to reflect the user's
+# primary colour, logo path, and font family. Other sections can be
+# hand-edited but should stay structurally aligned with default.yaml so
+# lib/visualize.py can read them.
 name: custom
 description: "User-editable style. The /style command updates this file."
 

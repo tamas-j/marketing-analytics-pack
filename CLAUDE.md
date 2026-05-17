@@ -4,7 +4,7 @@ Working memory for the `marketing-analytics-pack` plugin build. Future turns: re
 
 ## Project
 **Marketing Analytics Pack for Claude** (`marketing-analytics-pack`), v0.1.1, MIT.
-A coherent skills pack (25 skills, 7 clusters) for non-technical marketing/analytics users. Tracked in Linear as **URB-182** (parent: URB-181, project: Experiments, team: Urbsai).
+A coherent skills pack (27 slash commands + 1 `data-visualization` reference skill, across 7 clusters) for non-technical marketing/analytics users. Tracked in Linear as **URB-182** (parent: URB-181, project: Experiments, team: Urbsai).
 
 ## Locked decisions
 | Decision | Value |
@@ -26,7 +26,7 @@ A coherent skills pack (25 skills, 7 clusters) for non-technical marketing/analy
 ## Architecture (the spine)
 - **Tiered skills.** Most are **core skills** (prompt + matplotlib, install in seconds): planner, readiness checker, style picker, all selectors / generators / interpreters / framework builders. Three are **advanced runners** with heavier deps declared and pip-installed on first use: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian).
 - **Commands vs skills — separate peer directories (financial-services pattern).** Two flavours, two folders:
-  - **`commands/<name>.md`** — slash commands the user invokes (`/kpi-tree`, `/check-data`, `/style`, `/forecast`). Frontmatter: `description` + `argument-hint`. **No `name:` field — filename is the command name.** Most of our 25 entries live here.
+  - **`commands/<name>.md`** — slash commands the user invokes (`/kpi-tree`, `/check-data`, `/style`, `/forecast`). Frontmatter: `description` + `argument-hint`. **No `name:` field — filename is the command name.** All 27 user-invocable entries live here.
   - **`skills/<name>/SKILL.md`** — composable knowledge units commands pull in via `Use skill: "<name>"`. Frontmatter: `description` (with "Use when…" trigger), optional `user-invocable: false` for pure model-only. The `data-visualization` reference skill is the canonical example. Skills can have `references/` (static support files) and `scripts/` (Python the skill runs) subdirs.
   - Commands **compose** skills. One command can pull in several skills (e.g. `/forecast` pulls in `skills/forecast-methods/` and `skills/data-visualization/`).
   - Cross-plugin invocation uses `/<plugin-name>:<command>` namespacing — `/marketing-analytics-pack:kpi-tree` when called from outside the plugin; bare `/kpi-tree` from inside the user's loaded session.

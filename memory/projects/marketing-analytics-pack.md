@@ -6,7 +6,7 @@
 **Status:** 0.1.0 scaffold complete; next is the shared visual style system.
 
 ## What it is
-A coherent Claude plugin packaging 25 marketing/analytics skills across 7 clusters. Reframes the original "ship 3 portfolio projects" plan (URB-181) into a single product-shaped deliverable.
+A coherent Claude plugin packaging 27 marketing/analytics slash commands (plus a `data-visualization` reference skill) across 7 clusters. Reframes the original "ship 3 portfolio projects" plan (URB-181) into a single product-shaped deliverable.
 
 ## Why this reframe
 - Repositions Tamas from "person who built some skills" to "person who shipped an analytics product" — meaningfully more senior CV signal.
@@ -36,7 +36,7 @@ Non-technical marketing/analytics person who wants to do real analytical work bu
 10. Add GitHub URL to CV
 
 ## Success criteria
-- 25 skills, consistent visual style, non-technical-friendly SKILL.md each
+- 27 slash commands + `data-visualization` reference skill, consistent visual style, non-technical-friendly SKILL.md each
 - Installable end-to-end on a fresh Claude install
 - Working example flow on sample data
 - Polished README on GitHub

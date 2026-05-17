@@ -1,7 +1,7 @@
 # Build conventions
 
-Rules of the road for the Marketing Analytics Pack codebase. Future
-turns: follow these unless URB-182 explicitly overrides.
+Rules of the road for the Marketing Analytics Pack codebase. Follow
+these unless URB-182 explicitly overrides.
 
 ## Commands vs skills — separate peer directories
 
@@ -10,17 +10,15 @@ Following the financial-services pattern
 
 - **`commands/<name>.md`** — slash commands the user explicitly invokes
   (`/kpi-tree`, `/style`, `/forecast`). One markdown file per command.
-  No subdirectory. Frontmatter has `description` + `argument-hint`.
-  No `name:` field — the filename is the command name. All 27
-  user-invocable entries live here.
+  No subdirectory. Frontmatter has `description` + `argument-hint`. No
+  `name:` field — the filename is the command name. All 27 user-invocable
+  entries live here.
 - **`skills/<name>/SKILL.md`** — composable knowledge units. One folder
   per skill. Optional `references/` (static support files — templates,
-  examples, dialect notes — the `data-context-extractor` pattern) and
-  `scripts/` (Python the skill runs — the advanced-runner pattern)
-  subfolders.
+  examples, dialect notes) and `scripts/` (Python the skill runs)
+  subdirectories.
 - **Commands compose skills.** A command's workflow calls
-  `Use skill: "<name>"` to pull in shared knowledge (chart patterns,
-  statistical methods, forecast comparisons, etc.). One command can
+  `Use skill: "<name>"` to pull in shared knowledge. One command can
   pull in several skills.
 - **Cross-plugin invocation:** `/<plugin-name>:<command>` — so
   `/marketing-analytics-pack:kpi-tree` when called from outside the
@@ -46,35 +44,31 @@ Following the financial-services pattern
 
 ## Manifest
 
-- Path: `.claude-plugin/plugin.json`. **Not** `plugin.json` at the repo
-  root.
-- Schema: exactly 4 fields — `name`, `version`, `description`,
+- Path: `.claude-plugin/plugin.json`. NOT `plugin.json` at the repo root.
+- Schema: exactly four fields — `name`, `version`, `description`,
   `author`. No `displayName`, `keywords`, `categories`, `repository`,
-  `skills`, etc. Common rejection cause if extras leak in.
+  `skills`, etc.
 - `name` matches `^[a-z0-9][a-z0-9-]{1,63}$` (I11).
 - `description` is 10–2000 chars, no hidden Unicode (I3, I10).
 
 ## Skill body requirements
 
-- A "Required Inputs" section written for a non-technical reader.
+- Required Inputs section written for a non-technical reader.
 - Method, Output Template, and Guardrails sections are conventional
   but optional.
 - Advanced runners explicitly note their dependency expectations and
-  whether they execute or just specify. v1 ships them as
-  specification-only stubs; treat that as the current floor, not the
-  ceiling.
+  whether they execute or just specify.
 
 ## Visual output
 
 - Skills don't import chart code. Claude copies the matplotlib
   patterns from `skills/data-visualization/SKILL.md` into the Python
   it generates at runtime.
-- Brand, palette, and typography come from `lib/styles/*.yaml`, read
-  at runtime through `lib/visualize.py`. Never inline colours or fonts
-  inside a skill.
+- Brand, palette, and typography come from `lib/styles/*.yaml`,
+  read at runtime through `lib/visualize.py`. Never inline colours
+  or fonts inside a skill.
 - Three bundled styles: `default`, `executive`, `custom`. The `/style`
   command writes only to `custom.yaml`, only in the `brand` block.
-- `default.yaml` and `executive.yaml` are read-only templates.
 
 ## Dependencies
 
@@ -88,12 +82,10 @@ Following the financial-services pattern
 
 - Run `python scripts/validate.py` from the repo root before every
   commit and before any release.
-- The script enforces invariants I3, I10, I11; the 4-field manifest
-  schema; skill dir == name field; command frontmatter shape; style
-  YAML structure. PyYAML is optional — a small inline parser is the
-  fallback.
+- The script enforces invariants I3, I10, I11; manifest schema; skill
+  dir == name field; command frontmatter; style YAML structure.
 - `CHANGELOG.md` must stay in lockstep with `.claude-plugin/plugin.json`
-  `version`.
+  `version` — common marketplace rejection cause.
 
 ## Releases
 
@@ -101,8 +93,6 @@ Following the financial-services pattern
 - Bump to 1.0.0 when the full 27-command pack ships with screenshots,
   sample data, validated marketplace listing, and the advanced runners
   decision resolved.
-- Each cluster could spawn a sub-ticket if the build runs long;
-  otherwise tracked via the URB-182 checklist.
 
 ## File layout reference
 
@@ -121,9 +111,7 @@ marketing-analytics-pack/
 │   ├── visualize.py
 │   └── styles/                     # default / executive / custom yaml
 ├── scripts/                        # validate.py and other repo tooling
-├── docs/                           # design notes, conventions, contribution guide
-├── examples/                       # worked example flows + sample data
+├── docs/                           # this folder
+├── examples/                       # worked example flows
 └── memory/                         # deep memory (people, projects, context)
 ```
-
-→ User-facing version of these conventions lives at `docs/conventions.md`.
