@@ -2,7 +2,7 @@
 
 A coherent skills pack that helps non-technical marketing and analytics people do real analytical work in Claude — guided by a main planner, validated by a data readiness checker, and rendered through a shared visual style system.
 
-> **Status:** 0.1.1 — scaffold plus shared visual style system, front-door workflows, completed Metrics, Diagnosis, Segmentation, Marketing operations command sets, and first Experimentation workflows. Track progress in [CHANGELOG.md](./CHANGELOG.md).
+> **Status:** 0.1.1 — scaffold plus shared visual style system, front-door workflows, and completed Metrics, Diagnosis, Segmentation, Marketing operations, and Experimentation command sets. Track progress in [CHANGELOG.md](./CHANGELOG.md).
 
 ## Why this exists
 

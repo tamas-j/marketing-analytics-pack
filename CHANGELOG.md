@@ -31,13 +31,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Worked Marketing operations examples for audience suppression, taxonomy audit, fatigue, and next-best-action logic.
 - Experimentation batch 1: `/experiment-design-reviewer`, `/incrementality-test-designer`, and `/attribution-model-selector`.
 - Worked Experimentation examples for A/B test review, geo incrementality design, and attribution approach selection.
+- MMM workflows: `/mmm-readiness`, `/mmm-runner`, and `/mmm-result-interpreter` with Google Meridian as the runner target.
+- Worked MMM examples for readiness, runner specification, and result interpretation.
 
 ### Planned
 - Metrics cluster examples and screenshots for README polish
 - Diagnosis cluster examples and screenshots for README polish
 - Segmentation cluster examples and screenshots for README polish
 - Marketing operations cluster examples and screenshots for README polish
-- Remaining Experimentation skills: MMM readiness checker, MMM runner, MMM result interpreter
 - Remaining Forecasting skills: Forecast method selector and Forecast runner
 - Advanced runners: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian)
 - Sample datasets + screenshot gallery for README and marketplace submission

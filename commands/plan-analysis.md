@@ -39,6 +39,9 @@ Use skill: "data-readiness-checker"
 | "Did this campaign work?" | `/campaign-post-mortem` or `/incrementality-test-designer` | Use post-mortem for observed performance; incrementality for causal impact. |
 | "Can we trust this A/B test?" | `/experiment-design-reviewer` | Review hypothesis, control, randomisation, metrics, and risks. |
 | "Which attribution model should we use?" | `/attribution-model-selector` | Choose the measurement approach and caveats. |
+| "Are we ready for MMM?" | `/mmm-readiness` | Check time-series, media, controls, variation, and risks. |
+| "Can you prepare an MMM run?" | `/mmm-runner` | Scope a Google Meridian runner spec. |
+| "What do these MMM results mean?" | `/mmm-result-interpreter` | Interpret contribution, ROI, uncertainty, and caveats. |
 | "What will happen next month?" | Forecast method selector | Planned forecasting command. |
 | "How should I explain this result?" | `/analysis-brief` or `/campaign-post-mortem` | Plan or summarise the analysis. |
 | "Why is my campaign list so small?" | `/suppression-waterfall` | Explain eligibility, consent, contactability, and business-rule losses. |
