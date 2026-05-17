@@ -33,13 +33,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Worked Experimentation examples for A/B test review, geo incrementality design, and attribution approach selection.
 - MMM workflows: `/mmm-readiness`, `/mmm-runner`, and `/mmm-result-interpreter` with Google Meridian as the runner target.
 - Worked MMM examples for readiness, runner specification, and result interpretation.
+- Forecasting command set: `/forecast-method` and `/forecast-runner` with Prophet as the runner target.
+- Worked Forecasting examples for method selection and runner specification.
 
 ### Planned
 - Metrics cluster examples and screenshots for README polish
 - Diagnosis cluster examples and screenshots for README polish
 - Segmentation cluster examples and screenshots for README polish
 - Marketing operations cluster examples and screenshots for README polish
-- Remaining Forecasting skills: Forecast method selector and Forecast runner
 - Advanced runners: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian)
 - Sample datasets + screenshot gallery for README and marketplace submission
 - `scripts/validate.py` for JSON / YAML / manifest sanity checks before push

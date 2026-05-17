@@ -42,7 +42,7 @@ Use skill: "data-readiness-checker"
 | "Are we ready for MMM?" | `/mmm-readiness` | Check time-series, media, controls, variation, and risks. |
 | "Can you prepare an MMM run?" | `/mmm-runner` | Scope a Google Meridian runner spec. |
 | "What do these MMM results mean?" | `/mmm-result-interpreter` | Interpret contribution, ROI, uncertainty, and caveats. |
-| "What will happen next month?" | Forecast method selector | Planned forecasting command. |
+| "What will happen next month?" | `/forecast-method` | Choose a forecasting approach before preparing a runner spec. |
 | "How should I explain this result?" | `/analysis-brief` or `/campaign-post-mortem` | Plan or summarise the analysis. |
 | "Why is my campaign list so small?" | `/suppression-waterfall` | Explain eligibility, consent, contactability, and business-rule losses. |
 | "Are our UTMs/names clean enough?" | `/marketing-taxonomy-auditor` | Audit taxonomy consistency and reporting risk. |
