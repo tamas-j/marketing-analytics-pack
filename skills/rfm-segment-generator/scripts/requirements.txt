@@ -1,0 +1,10 @@
+# Advanced runner deps for skills/rfm-segment-generator.
+# Install in the user's environment before running run_rfm.py, or invoke
+# the script with --auto-install to pip-install on first use.
+#
+# Lighter than the Prophet / Meridian runners: pure pandas, with scikit-learn
+# only loaded if the user asks for k-means segmentation.
+pandas>=2.0
+matplotlib>=3.7
+pyyaml>=6.0
+scikit-learn>=1.3

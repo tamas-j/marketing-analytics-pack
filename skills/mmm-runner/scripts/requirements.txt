@@ -1,0 +1,11 @@
+# Advanced runner deps for skills/mmm-runner.
+# Install in the user's environment before running run_mmm.py, or invoke
+# the script with --auto-install to pip-install on first use.
+#
+# Meridian is the heavy one — it pulls TensorFlow + tfp-nightly. Initial
+# download is ~600 MB; expect the first install to take a few minutes.
+# Use a venv if your Python is PEP 668-managed (Ubuntu 23+ / Debian 12+).
+google-meridian>=1.6
+pandas>=2.0
+matplotlib>=3.7
+pyyaml>=6.0

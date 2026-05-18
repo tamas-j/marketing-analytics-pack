@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-05-18
+
 ### Added
+- **Advanced runner — RFM segmentation execution.** `skills/rfm-segment-generator/scripts/run_rfm.py` computes Recency-Frequency-Monetary from a transactions CSV, assigns named segments (quantile rules by default — Champions, Loyal, Big spenders, New customers, Promising, At risk, Hibernating — or k-means clusters when `--method kmeans` is passed), and writes `rfm_scores.csv`, `segment_profiles.csv`, styled `segment_sizes.png` + `rf_scatter.png`, and `summary.md`. Deps declared in `scripts/requirements.txt` (`pandas`, `matplotlib`, `pyyaml`, `scikit-learn`); much lighter than the Prophet / Meridian runners. End-to-end smoke-tested against `examples/data/orders.csv` (116 customers → 8 named segments; Champions drive 33% of revenue from 15% of customers). SKILL.md and `/rfm-segment` command updated with execution-mode workflow and surface-availability table; worked example extended with the v0.2.0 execution run.
+- **Advanced runner — Google Meridian MMM execution.** `skills/mmm-runner/scripts/run_mmm.py` fits a Bayesian MMM on a CSV with KPI + media spend + optional controls, computes posterior ROI / contribution / response curves, and emits styled `roi_per_channel.png` and `response_curves.png` plus `roi_per_channel.csv`, `channel_contribution.csv`, `response_curves.csv`, and `summary.md`. Deps declared in `scripts/requirements.txt` (`google-meridian`, `pandas`, `matplotlib`, `pyyaml`); written against the verified Meridian 1.6 API surface (`DataFrameInputDataBuilder` + `Meridian.sample_posterior` + `Analyzer.roi/response_curves/incremental_outcome`). SKILL.md and `/mmm-runner` command updated with execution-mode workflow and surface-availability table; worked example extended to show the v0.2.0 execution path against `examples/data/mmm-weekly.csv`. Use a venv — Meridian pulls TensorFlow + tfp-nightly (~600 MB).
+- **Advanced runner — Prophet forecast execution.** `skills/forecast-runner/scripts/run_forecast.py` fits Prophet on a CSV time series, supports holidays + extra regressors, backtests against naive and seasonal-naive baselines, and writes styled forecast / components charts plus `forecast.csv`, `baselines.csv`, and `summary.md`. Deps declared in `scripts/requirements.txt` (`prophet`, `pandas`, `matplotlib`, `pyyaml`); install up-front or pass `--auto-install`. SKILL.md and `/forecast-runner` command updated with execution-mode workflow; worked example extended to show execution against `examples/data/mmm-weekly.csv` (Prophet beats both baselines on the sample data: 7.7% MAPE vs 13.8% seasonal naive vs 17.6% naive).
+- **Shippability guardrails for advanced runners:** PEP 668-aware `_install_deps()` in both runners (try plain pip, fall back to `--user`, then a clear venv-setup message); README "Advanced runners — environment setup" section calling out venv usage and which Claude surfaces support execution mode; "Execution Mode Availability" surface-compatibility table in each runner's SKILL.md so Claude knows to fall back to spec mode when Bash isn't available.
 - Shared visual style system: `lib/styles/default.yaml`, `lib/styles/executive.yaml`, `lib/styles/custom.yaml`, and thin `lib/visualize.py` style reader.
 - `skills/data-visualization/` reference skill with reusable matplotlib chart patterns.
 - `/style` command workflow for selecting or customising the active chart style.
@@ -69,6 +75,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `.gitignore` for Python and common editor / OS artefacts.
 - `CLAUDE.md` working memory capturing locked decisions, architecture, conventions, and visual style approach.
 
-[Unreleased]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/tamas-j/marketing-analytics-pack/releases/tag/v0.1.0

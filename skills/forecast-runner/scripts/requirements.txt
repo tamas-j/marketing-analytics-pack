@@ -1,0 +1,10 @@
+# Advanced runner deps for skills/forecast-runner.
+# Install in the user's environment before running run_forecast.py, or invoke
+# the script with --auto-install to pip-install on first use.
+#
+# Prophet is the heavy one — it pulls cmdstanpy and downloads a CmdStan toolchain
+# on first import. Expect the initial install to take a few minutes.
+prophet>=1.1.5
+pandas>=2.0
+matplotlib>=3.7
+pyyaml>=6.0

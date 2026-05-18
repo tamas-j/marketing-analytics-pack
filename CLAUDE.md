@@ -3,21 +3,21 @@
 Working memory for the `marketing-analytics-pack` plugin build. Future turns: read this first; deeper context lives in `memory/`.
 
 ## Project
-**Marketing Analytics Pack for Claude** (`marketing-analytics-pack`), v0.1.1, MIT.
-A coherent skills pack (27 slash commands + 1 `data-visualization` reference skill, across 7 clusters) for non-technical marketing/analytics users. Tracked in Linear as **URB-182** (parent: URB-181, project: Experiments, team: Urbsai).
+**Marketing Analytics Pack for Claude** (`marketing-analytics-pack`), v0.2.0, MIT.
+A coherent skills pack (27 slash commands + 1 `data-visualization` reference skill, across 7 clusters) for non-technical marketing/analytics users. Three advanced runners (Prophet, Google Meridian, pandas/scikit RFM) ship with real execution from v0.2.0 onwards. Tracked in Linear as **URB-182** (parent: URB-181, project: Experiments, team: Urbsai).
 
 ## Locked decisions
 | Decision | Value |
 |----------|-------|
 | GitHub handle | `tamas-j` |
-| Repo | https://github.com/tamas-j/marketing-analytics-pack (live, v0.1.0 tagged; v0.1.1 in flight) |
+| Repo | https://github.com/tamas-j/marketing-analytics-pack (live, v0.1.0 tagged; v0.1.1 manifest fix; v0.2.0 with real advanced runners) |
 | Plugin name | `marketing-analytics-pack` (`-pack` suffix — `marketing-analytics` taken on claudepluginhub) |
 | Display name | "Marketing Analytics Pack for Claude" (README only — not a manifest field) |
 | License | MIT |
 | Manifest path | `.claude-plugin/plugin.json` — *not* `plugin.json` at the repo root (Anthropic convention) |
 | Manifest schema | Exactly 4 fields: `name`, `version`, `description`, `author`. Nothing else (no `displayName`, `keywords`, `categories`, `repository`, `skills`, etc.) |
 | Name regex | `^[a-z0-9][a-z0-9-]{1,63}$`, no hidden Unicode (marketplace invariants I10/I11) |
-| Initial version | 0.1.0 → 0.1.1 (manifest-path fix; see CHANGELOG) |
+| Initial version | 0.1.0 → 0.1.1 (manifest-path fix) → 0.2.0 (real Prophet / Meridian / RFM execution; see CHANGELOG) |
 | MMM library | **Google Meridian** (chosen over PyMC-Marketing) |
 | Forecast library | **Prophet** |
 | Data input scope (v1) | Files only — CSV / Excel / paste. DB access deferred, documented in README. |
@@ -114,8 +114,13 @@ marketing-analytics-pack/
 
 ## Status (live)
 - ✅ **0.1.0 scaffold** pushed to GitHub: folder structure, manifest, LICENSE, CHANGELOG, README skeleton, .gitignore, CLAUDE.md.
-- 🛠 **0.1.1 in flight (this turn)** — manifest moved to `.claude-plugin/plugin.json`, schema stripped to 4 fields, visual style architecture revised after auditing `claude-for-legal` + `knowledge-work-plugins/data`.
-- ⏭ **Next:** Task #2 — shared visual style system (`lib/styles/*.yaml` + thin `lib/visualize.py` reader + `data-visualization` reference skill + Style picker front-door skill).
-- ⏭ **After that:** Task #3 — KPI tree generator (proof-of-pattern first skill).
+- ✅ **0.1.1** — manifest moved to `.claude-plugin/plugin.json`, schema stripped to 4 fields, visual style architecture revised after auditing `claude-for-legal` + `knowledge-work-plugins/data`.
+- ✅ **0.1.x build-out** — all 27 commands + 27 backing skills + style system + `scripts/validate.py` + 28 worked examples + 5 sample-data CSVs.
+- ✅ **0.2.0 (this turn, 2026-05-18)** — real execution for all three advanced runners:
+  - `skills/forecast-runner/scripts/run_forecast.py` (Prophet, ~370 lines) — fit + baselines + styled charts. Smoke-tested: Prophet beat naive 17.6% MAPE and seasonal naive 13.8% with 7.7% MAPE on `mmm-weekly.csv`.
+  - `skills/mmm-runner/scripts/run_mmm.py` (Meridian, ~470 lines) — written against verified Meridian 1.6 API (`DataFrameInputDataBuilder` → `Meridian.sample_posterior` → `Analyzer.roi/response_curves/incremental_outcome`). CLI verified; full smoke test deferred to user machine because TensorFlow + tfp-nightly is too large for the sandbox install budget.
+  - `skills/rfm-segment-generator/scripts/run_rfm.py` (pandas + optional scikit, ~430 lines) — Recency-Frequency-Monetary + named segments or k-means. Smoke-tested: 116 customers → 8 segments, Champions drive 33% of revenue from 15% of customers.
+  - Shippability guardrails: PEP 668-aware `_install_deps()` (plain pip → `--user` → clear venv message), README "Advanced runners — environment setup" section, "Execution Mode Availability" table in each runner's SKILL.md so Claude knows to fall back to spec mode on web chat.
+- ⏭ **Next:** screenshot gallery (real chart outputs already produced — capture them into the README); GitHub tag `v0.2.0`; marketplace submissions.
 
 → Deeper context: `memory/projects/marketing-analytics-pack.md`, `memory/context/build-conventions.md`, `memory/glossary.md`
