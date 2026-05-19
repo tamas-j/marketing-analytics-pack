@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Five new chart patterns in the `data-visualization` reference skill: **Scatter** (RFM, CAC vs LTV, spend vs ROI), **Multi-Line** (MMM response curves, cohort retention), **Line With Interval / Fan** (forecasts and any line with an uncertainty band), **Waterfall** (suppression decomposition, list eligibility losses, revenue bridges), and **Overlap Matrix** (audience overlap heatmap, persona × channel reach). All five copy-paste cleanly, follow the existing token-loading idiom, and were smoke-tested locally — bar / line / h-bar are no longer the only available shapes when a command says "use the data-visualization skill for chart styling". Added a "Pattern Selection Guide" table so Claude picks the right shape per situation.
+- `examples/check-data-example.md` — worked `/check-data` flow against `examples/data/mmm-weekly.csv`. Closes the gap where 26/27 commands had a worked example and the data-readiness front-door command didn't.
+
+### Removed
+- Stale `docs/CONTRIBUTING.md` duplicate. The current contributor guide lives at the repo root (`CONTRIBUTING.md`).
+
 ## [0.2.0] - 2026-05-18
 
 ### Added
