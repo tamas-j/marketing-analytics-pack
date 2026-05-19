@@ -5,7 +5,7 @@ description: Use when turning a marketing or commercial goal into a KPI tree wit
 
 # KPI Tree Generator
 
-This skill turns a broad goal into a clear KPI tree. It is designed for non-technical marketing and analytics users who need to know what to measure, why it matters, and what data they need next.
+This skill turns a broad goal into a clear KPI tree. It is designed for anyone who works with marketing data — analysts, marketers, growth and lifecycle owners, product owners — and needs to know what to measure, why it matters, and what data they need next.
 
 ## Required Inputs
 

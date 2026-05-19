@@ -4,7 +4,7 @@ Working memory for the `marketing-analytics-pack` plugin build. Future turns: re
 
 ## Project
 **Marketing Analytics Pack for Claude** (`marketing-analytics-pack`), v0.2.0, MIT.
-A coherent skills pack (27 slash commands + 1 `data-visualization` reference skill, across 7 clusters) for non-technical marketing/analytics users. Three advanced runners (Prophet, Google Meridian, pandas/scikit RFM) ship with real execution from v0.2.0 onwards. Tracked in Linear as **URB-182** (parent: URB-181, project: Experiments, team: Urbsai).
+A coherent skills pack (28 slash commands + 1 `data-visualization` reference skill, across 7 clusters + a sharing layer) for anyone who works with marketing data — analysts, marketers, growth / lifecycle owners, product owners, founders. Three advanced runners (Prophet, Google Meridian, pandas/scikit RFM) ship with real execution from v0.2.0 onwards. A `/report` command packages any skill's output into HTML / DOCX / PPTX / PDF. Tracked in Linear as **URB-182** (parent: URB-181, project: Experiments, team: Urbsai).
 
 ## Locked decisions
 | Decision | Value |
@@ -39,7 +39,7 @@ A coherent skills pack (27 slash commands + 1 `data-visualization` reference ski
 - **Files-only input** for v1. README documents the workaround for warehouse users: "connect your warehouse MCP and describe the table to Claude" (works today, just not built in). v2 will add `.mcp.json` for direct warehouse connectors.
 
 ## Target user
-Non-technical marketing/analytics person who wants to do real analytical work but doesn't know how to start. SKILL.md "Required inputs" sections must be written for non-technical readers.
+Anyone who works with marketing data — analysts, marketers, growth / lifecycle owners, product owners, founders. The bar is "understands the question, has or can get the data, would rather not hand-roll the analysis or chart code." SKILL.md "Required inputs" sections are written for that reader: precise about what's needed, plain about why, never assuming SQL/Python fluency.
 
 ## Repo structure
 ```
@@ -63,7 +63,7 @@ marketing-analytics-pack/
 
 ## Conventions
 - **Commands (`commands/*.md`):** frontmatter is `description` + `argument-hint`. No `name:` field — the filename is the command name. Body is the workflow: numbered steps, "Use skill: \"<name>\"" calls to pull in shared knowledge, examples, tips. Reference: `plugins/vertical-plugins/financial-analysis/commands/dcf.md` in the financial-services audit.
-- **Skills (`skills/<name>/SKILL.md`):** required-inputs section for a non-technical reader. Optional `references/` (static support files — templates, examples, dialect notes — the `data-context-extractor` pattern) and `scripts/` (Python the skill runs — the `data-context-extractor` + advanced-runner pattern) subdirs.
+- **Skills (`skills/<name>/SKILL.md`):** required-inputs section written plainly (the audience is a marketing/analytics practitioner, not a data engineer — precise about fields, never assuming SQL/Python). Optional `references/` (static support files — templates, examples, dialect notes — the `data-context-extractor` pattern) and `scripts/` (Python the skill runs — the `data-context-extractor` + advanced-runner pattern) subdirs.
 - **Frontmatter:**
   - Commands: `description`, `argument-hint`. No `name:`.
   - Model-invoked skills: `description` ("Use when…" pattern). Add `user-invocable: false` for pure model-only.
@@ -99,7 +99,7 @@ marketing-analytics-pack/
 - **Marketing ops:** Suppression waterfall · Marketing taxonomy auditor · Frequency cap / fatigue analyser · NBA logic generator
 
 ## Success criteria (URB-182)
-- 25 skills implemented with consistent visual style, each with non-technical-friendly SKILL.md
+- 28 commands implemented with consistent visual style, each with a practitioner-friendly SKILL.md
 - Plugin installable end-to-end on a fresh Claude install
 - Working example flow demonstrable on sample data
 - Published to GitHub with polished README

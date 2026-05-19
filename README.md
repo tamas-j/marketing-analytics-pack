@@ -1,6 +1,6 @@
 # Marketing Analytics Pack for Claude
 
-A coherent skills pack that helps non-technical marketing and analytics people do real analytical work in Claude — guided by a main planner, validated by a data readiness checker, and rendered through a shared visual style system.
+A coherent skills pack for the people who work with marketing data — analysts, marketers, growth and lifecycle owners, product owners, founders — to do real analytical work in Claude, guided by a main planner, validated by a data readiness checker, and rendered through a shared visual style system.
 
 > **Status:** 0.2.0 — 27 slash commands + 1 reference skill, three advanced runners (Prophet forecast, Google Meridian MMM, pandas/scikit RFM) shipping with real execution, shared visual style system, sample data, and worked examples. Track progress in [CHANGELOG.md](./CHANGELOG.md).
 
@@ -10,7 +10,7 @@ Most analytics tooling assumes you already know what to do. This pack assumes yo
 
 ## Who it's for
 
-A non-technical marketing or analytics person who wants to do real analytical work but doesn't know how to start. The plugin's entry point is the **Main analysis planner**, which diagnoses your need and routes you to the right skill. The **Data readiness checker** validates your data before any work begins.
+Anyone who works with marketing data — analysts, marketers, growth / lifecycle owners, product owners, founders. The bar is "you understand the question, you have or can get the data, but you'd rather not hand-roll the analysis or the chart code." The plugin's entry point is the **Main analysis planner**, which diagnoses your need and routes you to the right skill. The **Data readiness checker** validates your data before any work begins. When you want to share the output with a stakeholder, **`/report`** packages whatever the last skill produced (markdown + charts) into a single HTML, DOCX, PPTX, or PDF.
 
 ## Install
 
@@ -117,10 +117,6 @@ Same run, ordered by total revenue contribution. 17 Champions drive ~33% of reve
 ## Example flow
 
 See the `examples/` directory for worked flows across the front door, Metrics, Diagnosis, Segmentation, Marketing operations, Experimentation, and Forecasting command sets.
-
-## Roadmap
-
-See [URB-182](https://linear.app/urbsai/issue/URB-182/marketing-analytics-plugin-skills-pack-v1) for the full build order. In short: scaffold → style system + front door → KPI tree generator → lightweight clusters → experimentation → segmentation + forecasting → advanced runners → polish → publish.
 
 ## License
 

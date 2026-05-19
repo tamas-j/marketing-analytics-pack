@@ -76,4 +76,4 @@ If the user gives a vague request, infer the likely intent and state assumptions
 - Do not recommend MMM, forecasting, RFM, or experimentation until data grain and fields are plausible.
 - If the best command is not built yet, say so plainly and offer the closest available route.
 - Prefer one strong recommendation over a menu of options.
-- Keep the plan actionable for a non-technical user.
+- Keep the plan actionable for a marketing or analytics practitioner — name the command, name the fields, name the next concrete step.

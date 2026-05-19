@@ -137,4 +137,4 @@ Use only the stages that fit the business:
 - Do not present attribution as solved if customer interactions cross channels or devices.
 - Do not optimize acquisition metrics without quality or retention guardrails.
 - Do not use retention metrics before cohorts have had enough time to mature.
-- Keep recommendations practical for a non-technical user.
+- Keep recommendations practical for a marketing or analytics practitioner — concrete metrics, named fields, and decision-relevant cuts.

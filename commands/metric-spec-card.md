@@ -49,4 +49,4 @@ Return a metric spec card with:
 - Separate the metric definition from how it should be interpreted.
 - Make exclusions explicit, especially refunds, cancellations, test records, bots, internal users, and duplicate events.
 - If the current definition is flawed, preserve it as "current definition" and propose a cleaner version.
-- Keep the card understandable for a non-technical marketing or analytics user.
+- Keep the card understandable for a marketing or analytics practitioner — definitions in plain language even when the underlying SQL is non-trivial.

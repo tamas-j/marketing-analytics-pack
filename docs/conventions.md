@@ -53,7 +53,7 @@ Following the financial-services pattern
 
 ## Skill body requirements
 
-- Required Inputs section written for a non-technical reader.
+- Required Inputs section written plainly for a marketing / analytics practitioner (precise about fields, never assuming SQL or Python fluency).
 - Method, Output Template, and Guardrails sections are conventional
   but optional.
 - Advanced runners explicitly note their dependency expectations and

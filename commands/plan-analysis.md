@@ -66,4 +66,4 @@ Return:
 - Do not recommend an advanced runner before checking whether the user has the right data.
 - Prefer a lightweight diagnostic or KPI tree when the question is still vague.
 - If a planned command does not exist yet, name it as planned and offer the closest available workflow.
-- Keep language non-technical unless the user is clearly technical.
+- Match the user's vocabulary — go technical when they do (SQL, dialect-specific terms), stay plain when they're framing the business question.

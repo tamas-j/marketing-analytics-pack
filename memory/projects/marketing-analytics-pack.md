@@ -36,7 +36,7 @@ Non-technical marketing/analytics person who wants to do real analytical work bu
 10. Add GitHub URL to CV
 
 ## Success criteria
-- 27 slash commands + `data-visualization` reference skill, consistent visual style, non-technical-friendly SKILL.md each
+- 28 slash commands + `data-visualization` reference skill, consistent visual style, practitioner-friendly SKILL.md each (audience: analysts, marketers, growth / lifecycle, product owners, founders)
 - Installable end-to-end on a fresh Claude install
 - Working example flow on sample data
 - Polished README on GitHub

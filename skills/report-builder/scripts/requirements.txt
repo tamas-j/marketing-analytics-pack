@@ -1,0 +1,4 @@
+# Report builder deps. Only needed when packaging to HTML.
+# Light — installs in seconds on a fresh Python.
+markdown>=3.5
+pyyaml>=6.0

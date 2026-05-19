@@ -48,7 +48,7 @@ Return:
 
 ## Guardrails
 
-- Keep the framework practical for a non-technical marketing or analytics user.
+- Keep the framework practical for a marketing or analytics practitioner — analyst, marketer, growth/lifecycle owner, or product owner — not just a data engineer.
 - Do not treat every available metric as important. Prefer 6-12 meaningful metrics.
 - Separate business outcomes from activity metrics.
 - Include guardrails where optimizing the main KPI could create bad behavior.
