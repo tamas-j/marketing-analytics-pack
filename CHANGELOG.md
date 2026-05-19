@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-05-19
+
+### Added
+- **Three cross-cutting new skills (Batch 2 of skills audit).** The audit identified three structural gaps: no skill for blended measurement (MMM + incrementality + attribution together), no shared adversarial-review skill for any analytical output, and no canonical reference for measurement pitfalls — so the same warnings were repeated thinly across many skills. All three are added.
+  - **`measurement-triangulation` skill + `/triangulate` command** (~200 lines). Designs a blended measurement framework using all three layers (MMM for budget allocation, incrementality for calibration of the largest decisions, attribution for in-channel optimisation). Covers the triangulation calendar, the disagreement governance rule that pre-commits which layer wins which decision, three worked examples (DTC mature, B2B no-MMM, marketplace switchback-led), and stakeholder communication patterns. Addresses the audit's #2 priority gap ("missing measurement triangulation skill — senior signal lives here").
+  - **`results-skeptic` skill + `/skeptic` command** (~200 lines). Adversarial second-pass review for any analytical output — forecast, MMM, experiment readout, RFM, attribution, post-mortem, brief. Runs five lenses (definition / data and method / bias and confounding / uncertainty / decision relevance), method-specific checks per analysis type, the three pre-share questions, and a Share / Caveat / Fix / Do-not-share verdict. Severity-tagged findings. Addresses the audit's #3 priority gap ("no results-skeptic / red-team skill").
+  - **`measurement-pitfalls` reference skill** (~200 lines, `user-invocable: false`). Shared catalogue of common measurement pitfalls — cohort comparability, denominator errors, attribution vs causality, regression to the mean, selection / survivorship bias, Simpson's paradox, multiple testing, base rates, spillover / SUTVA violations, peeking, confounding by time, Goodhart's law, precision theatre, lurking variables, wrong counterfactual. Each section has mechanism / symptom / fix / worked example. Cross-skill wiring notes at the end map each pitfall to the skills that should link to it instead of repeating one-liners. Addresses the audit's #7 priority gap ("no shared pitfalls / glossary reference").
+- **Planner routing updated.** `main-analysis-planner` and `/plan-analysis` now route to `/triangulate` for blended-measurement questions and to `/skeptic` for pre-share review. The Question-Type Classifier added Framework and Review rows.
+
+### Changed
+- Bumped plugin manifest version to `0.4.0`.
+
+## [0.3.0] - 2026-05-19
+
+### Changed
+- **Selector tier deepened (Batch 1 of skills audit).** The seven thinnest selector / reviewer skills were rewritten to match the depth of `kpi-tree-generator`, `clv-scenario-modeller`, and `root-cause-investigation-tree`. Each now includes a decision tree, 2–3 worked examples, anti-patterns, ranked inputs, a quality rubric, and explicit cross-skill routing. Audit-driven; addresses the "selectors are too thin" finding.
+  - `attribution-model-selector` (67 → ~180 lines): adds the decision tree for picking between path-based attribution, MMM, incrementality, and blended frameworks; develops the blended-framework governance pattern (which model wins which decision); three worked examples (DTC reallocation, B2B pipeline attribution, lifecycle email defence).
+  - `forecast-method-selector` (66 → ~180 lines): adds the seven-step method decision tree, an error-metric guide (MAPE / sMAPE / WAPE / MAE / RMSE / Pinball), three worked examples (DTC weekly revenue, B2B short-history pipeline, lifecycle daily sends), and explicit treatment of intermittent / hierarchical / regime-change cases.
+  - `segmentation-method-selector` (68 → ~210 lines): adds the activation-first decision tree (RFM is *not* the default), an activation-feasibility check by channel, method-choice-by-activation matrix, three worked examples (DTC win-back, B2B account scoring, subscription research clustering), and anti-patterns including "method-led segmentation."
+  - `experiment-design-reviewer` (70 → ~210 lines): adds explicit treatment of power / MDE (with the `n ≈ 16pq/MDE²` rule), SRM and AA-test discipline, variance reduction (CUPED / stratification), peeking and sequential testing, network-effects mitigation table, three worked examples (under-powered button test, eligibility-after-assignment email test, marketplace spillover).
+  - `incrementality-test-designer` (74 → ~210 lines): adds design selection decision tree, geo-test power rules of thumb (markets, not impressions), spillover mitigation table, parallel-trends and placebo-test pre-period checks, three worked examples (CRM reactivation, paid social geo test, marketplace switchback).
+  - `mmm-readiness-checker` (76 → ~190 lines): adds explicit Ready / Caveats / Blocked thresholds per check, decision tree, input priority for fixes, three worked verdict examples (Ready, Blocked, Caveats), bridge-measurement guidance for the Blocked case.
+  - `mmm-result-interpreter` (68 → ~200 lines): adds diagnostic-threshold scorecard (R-hat / ESS / holdout / residuals / decomposition), explicit separation of contribution / average ROI / marginal ROI with worked stories, credible-interval discipline (overlapping intervals = not different), response-curve / saturation interpretation, three worked readouts (healthy, caveat-heavy, counter-intuitive).
+
 ## [0.2.1] - 2026-05-19
 
 ### Added
@@ -90,7 +114,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `.gitignore` for Python and common editor / OS artefacts.
 - `CLAUDE.md` working memory capturing locked decisions, architecture, conventions, and visual style approach.
 
-[Unreleased]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.1.0...v0.1.1

@@ -31,9 +31,11 @@ If the user gives a vague request, infer the likely intent and state assumptions
 | RFM | "Recency frequency monetary", "best customers", "lapsed buyers" | `/rfm-segment` |
 | Experimentation | "A/B test", "holdout", "incrementality", "did it work?" | `/experiment-design-reviewer` or `/incrementality-test-designer` |
 | Attribution/MMM | "channel contribution", "media mix", "budget allocation" | `/attribution-model-selector` or `/mmm-readiness` |
+| Measurement framework | "blended measurement", "MMM plus incrementality plus attribution", "how do we measure marketing overall" | `/triangulate` |
 | Forecasting | "forecast", "predict next month", "seasonality" | `/forecast-method` |
 | Marketing operations | "taxonomy", "suppression", "frequency cap", "NBA" | `/marketing-taxonomy-auditor`, `/suppression-waterfall`, `/frequency-cap-fatigue`, or `/nba-logic` |
 | Narrative | "explain the result", "post-mortem", "exec summary" | `/analysis-brief` or `/campaign-post-mortem` |
+| Pre-share review | "red-team this", "is this ready to share", "what would skeptics say" | `/skeptic` |
 
 ## Question Type Classifier
 
@@ -46,7 +48,9 @@ Use this before routing when the user's request is fuzzy:
 | Diagnostic | "Why did it happen?" | `/root-cause-tree` |
 | Causal | "Did this cause lift?" | `/incrementality-test-designer` or `/experiment-design-reviewer` |
 | Predictive | "What will happen next?" | `/forecast-method` |
-| Packaging | "Can I share this?" | `/report` |
+| Packaging | "Can I share this?" | `/report` (after `/skeptic` if not yet reviewed) |
+| Framework | "How do we measure marketing overall, not just this campaign?" | `/triangulate` |
+| Review | "Is this analysis trustworthy?" | `/skeptic` |
 
 ## Routing Examples
 

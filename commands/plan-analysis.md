@@ -44,6 +44,8 @@ Use skill: "data-readiness-checker"
 | "What do these MMM results mean?" | `/mmm-result-interpreter` | Interpret contribution, ROI, uncertainty, and caveats. |
 | "What will happen next month?" | `/forecast-method` | Choose a forecasting approach before preparing a runner spec. |
 | "How should I explain this result?" | `/analysis-brief` or `/campaign-post-mortem` | Plan or summarise the analysis. |
+| "How do we run MMM, incrementality, and attribution together?" | `/triangulate` | Design a blended measurement framework with governance for disagreements. |
+| "Can you red-team this analysis before I share it?" | `/skeptic` | Adversarial review of an analytical output across five lenses. |
 | "Why is my campaign list so small?" | `/suppression-waterfall` | Explain eligibility, consent, contactability, and business-rule losses. |
 | "Are our UTMs/names clean enough?" | `/marketing-taxonomy-auditor` | Audit taxonomy consistency and reporting risk. |
 | "Are we over-contacting customers?" | `/frequency-cap-fatigue` | Diagnose fatigue and recommend caps. |
