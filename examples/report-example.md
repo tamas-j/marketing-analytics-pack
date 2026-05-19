@@ -40,13 +40,19 @@ python skills/report-builder/scripts/build_html_report.py \
   --images examples/rfm-segment/output \
   --output report-out/rfm-segmentation-2026-05-19.html \
   --title "RFM segmentation — Q4 review" \
+  --report-type rfm \
+  --audience "VP Lifecycle" \
+  --source-label "RFM runner output" \
+  --data-source "examples/data/orders.csv" \
   --style default \
   --auto-install
 ```
 
 ## What the HTML looks like
 
-- Header with the title in brand primary, today's date, and a "Built with Marketing Analytics Pack" footer.
+- Header with report type, title, today's date, style, and a "Built with Marketing Analytics Pack" footer.
+- Static artifact metadata: audience, source, data source, chart count, and optional previous-report label.
+- Highlight cards pulled from relevant sections of the source markdown.
 - The `summary.md` narrative rendered: segment-profile table, "Top segment by total revenue" callout, caveats.
 - A "Charts" section at the bottom with both PNGs as captioned figures (auto-appended because the `summary.md` lists them in the Outputs table but doesn't use `<img>` tags — the script surfaces them anyway).
 - All colours / typography pulled from `lib/styles/default.yaml`, so the report matches the chart visuals.
@@ -78,6 +84,21 @@ If the user has previously run `/style` and set `custom.yaml` with their brand p
 ```
 
 The HTML adopts those brand tokens for the header rule, headings, table header tint, and link colour — same brand the charts already use.
+
+### Recurring static readout
+
+```bash
+python skills/report-builder/scripts/build_html_report.py \
+  --input reports/monthly-rfm/2026-05-summary.md \
+  --images reports/monthly-rfm/2026-05 \
+  --output reports/monthly-rfm/2026-05.html \
+  --title "Monthly RFM readout - May 2026" \
+  --report-type rfm \
+  --previous-report "reports/monthly-rfm/2026-04.html" \
+  --style custom
+```
+
+This stays a normal static HTML file, but the metadata panel records the previous report so recurring analysis has traceability.
 
 ## Guardrails reminder
 

@@ -25,15 +25,35 @@ If the user gives a vague request, infer the likely intent and state assumptions
 |---|---|---|
 | Metric design | "What should we measure?", "define KPIs", "build a framework" | `/kpi-tree` |
 | Data readiness | "Can this file support...", "is my data enough?", "check columns" | `/check-data` |
-| Root cause diagnosis | "Why did X drop?", "what caused the change?" | Root cause investigation tree |
-| Analysis brief | "Plan the analysis", "what cuts should I run?" | Analysis brief generator |
-| Segmentation | "Group customers", "find audiences", "who should we target?" | Segmentation method selector |
-| RFM | "Recency frequency monetary", "best customers", "lapsed buyers" | RFM segment generator |
-| Experimentation | "A/B test", "holdout", "incrementality", "did it work?" | Experiment design reviewer or incrementality test designer |
-| Attribution/MMM | "channel contribution", "media mix", "budget allocation" | Attribution model selector or MMM readiness checker |
-| Forecasting | "forecast", "predict next month", "seasonality" | Forecast method selector |
-| Marketing operations | "taxonomy", "suppression", "frequency cap", "NBA" | Relevant marketing ops command |
-| Narrative | "explain the result", "post-mortem", "exec summary" | Analysis brief or campaign post-mortem generator |
+| Root cause diagnosis | "Why did X drop?", "what caused the change?" | `/root-cause-tree` |
+| Analysis brief | "Plan the analysis", "what cuts should I run?" | `/analysis-brief` |
+| Segmentation | "Group customers", "find audiences", "who should we target?" | `/segmentation-method` |
+| RFM | "Recency frequency monetary", "best customers", "lapsed buyers" | `/rfm-segment` |
+| Experimentation | "A/B test", "holdout", "incrementality", "did it work?" | `/experiment-design-reviewer` or `/incrementality-test-designer` |
+| Attribution/MMM | "channel contribution", "media mix", "budget allocation" | `/attribution-model-selector` or `/mmm-readiness` |
+| Forecasting | "forecast", "predict next month", "seasonality" | `/forecast-method` |
+| Marketing operations | "taxonomy", "suppression", "frequency cap", "NBA" | `/marketing-taxonomy-auditor`, `/suppression-waterfall`, `/frequency-cap-fatigue`, or `/nba-logic` |
+| Narrative | "explain the result", "post-mortem", "exec summary" | `/analysis-brief` or `/campaign-post-mortem` |
+
+## Question Type Classifier
+
+Use this before routing when the user's request is fuzzy:
+
+| Question type | User is really asking | Best first move |
+|---|---|---|
+| Framework | "What should we measure?" | `/kpi-tree` or `/customer-journey-measurement` |
+| Descriptive | "What happened?" | `/analysis-brief` after `/check-data` if data is involved |
+| Diagnostic | "Why did it happen?" | `/root-cause-tree` |
+| Causal | "Did this cause lift?" | `/incrementality-test-designer` or `/experiment-design-reviewer` |
+| Predictive | "What will happen next?" | `/forecast-method` |
+| Packaging | "Can I share this?" | `/report` |
+
+## Routing Examples
+
+- If the user has a broad goal but no metric definition, start with `/kpi-tree`, then `/metric-spec-card` for the most important KPI.
+- If the user has a file and asks whether an analysis is possible, start with `/check-data`, then route based on the verdict.
+- If the user asks whether a campaign "worked" but has no control or holdout, use `/campaign-post-mortem` for descriptive readout and `/incrementality-test-designer` for the next causal test.
+- If the user has model outputs or charts and needs stakeholder-ready material, use `/report`.
 
 ## Planning Method
 

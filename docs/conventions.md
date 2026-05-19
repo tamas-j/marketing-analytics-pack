@@ -11,7 +11,7 @@ Following the financial-services pattern
 - **`commands/<name>.md`** — slash commands the user explicitly invokes
   (`/kpi-tree`, `/style`, `/forecast`). One markdown file per command.
   No subdirectory. Frontmatter has `description` + `argument-hint`. No
-  `name:` field — the filename is the command name. All 27 user-invocable
+  `name:` field — the filename is the command name. All 28 user-invocable
   entries live here.
 - **`skills/<name>/SKILL.md`** — composable knowledge units. One folder
   per skill. Optional `references/` (static support files — templates,
@@ -90,7 +90,7 @@ Following the financial-services pattern
 ## Releases
 
 - Semver. 0.x = pre-stable.
-- Bump to 1.0.0 when the full 27-command pack ships with screenshots,
+- Bump to 1.0.0 when the full 28-command pack ships with screenshots,
   sample data, validated marketplace listing, and the advanced runners
   decision resolved.
 

@@ -22,8 +22,11 @@ Use skill: "data-readiness-checker"
    - unclear metric definitions
    - insufficient time coverage
    - leakage risks for prediction or forecasting
-5. Classify readiness as `Ready`, `Usable with caveats`, `Needs fixes`, or `Blocked`.
-6. Recommend the next command or analysis route.
+5. If the user provided a CSV path and the environment can read files, run:
+   `python skills/data-readiness-checker/scripts/profile_data.py <file>`.
+   Add `--grain-key <column>` for the expected grain when the key is known.
+6. Classify readiness as `Ready`, `Usable with caveats`, `Needs fixes`, or `Blocked`.
+7. Recommend the next command or analysis route.
 
 ## Output Format
 
@@ -35,6 +38,7 @@ Return:
 4. `Risks or missing fields`
 5. `Fixes to make before analysis`
 6. `Best next command`
+7. `Can proceed now?`
 
 ## Guardrails
 

@@ -39,6 +39,36 @@ If the user has only column names, perform a schema-level review and say that ro
 9. Definitions: are derived fields clearly defined?
 10. Leakage: for prediction or forecasting, are future-known fields excluded?
 
+## Quick File Profile
+
+When the user provides a CSV path and file access is available, run the bundled profiler before making row-level claims:
+
+```bash
+python skills/data-readiness-checker/scripts/profile_data.py <csv-path>
+```
+
+If the expected grain key is known, include it:
+
+```bash
+python skills/data-readiness-checker/scripts/profile_data.py <csv-path> --grain-key customer_id
+```
+
+Use the profile to report row count, column names, missingness, date-like columns, and duplicate keys. If only column names are pasted, do not claim missingness, duplicates, or date gaps.
+
+## Common Field Aliases
+
+Map likely aliases before deciding something is missing:
+
+| Concept | Common aliases |
+|---|---|
+| Customer key | `customer_id`, `user_id`, `client_id`, `account_id`, `subscriber_id` |
+| Order key | `order_id`, `transaction_id`, `purchase_id`, `booking_id` |
+| Date | `date`, `order_date`, `event_date`, `week_start`, `created_at`, `signup_date` |
+| Revenue | `revenue`, `net_revenue`, `sales`, `amount`, `order_value`, `mrr` |
+| Channel | `channel`, `source`, `medium`, `utm_source`, `utm_medium`, `acquisition_channel` |
+| Campaign | `campaign`, `campaign_id`, `utm_campaign`, `campaign_name` |
+| Treatment | `treatment`, `variant`, `holdout_flag`, `control_flag`, `exposed_flag` |
+
 ## Task-Specific Field Guide
 
 ### KPI Tree or Metric Design
@@ -92,6 +122,12 @@ Useful fields:
 - enough history for seasonality
 - known calendar events or campaign inputs, if available
 
+Typical thresholds:
+
+- `Ready`: at least 2 seasonal cycles, regular time grain, target has few missing periods.
+- `Usable with caveats`: 1-2 seasonal cycles or limited known future inputs.
+- `Blocked`: no date field, no target metric, or irregular periods that cannot be repaired.
+
 ### MMM or Attribution
 
 Useful fields:
@@ -101,6 +137,43 @@ Useful fields:
 - spend or exposure by channel
 - price, promo, seasonality, and external controls where possible
 - enough history to estimate lagged effects
+
+Typical thresholds:
+
+- `Ready`: 104+ weekly rows or 24+ monthly rows, stable KPI, media inputs by channel, and useful controls.
+- `Usable with caveats`: 52-103 weekly rows, few controls, or some channels with weak variation.
+- `Blocked`: no regular time series, no media inputs, or only platform-attributed conversions as the KPI.
+
+### RFM Segmentation
+
+Useful fields:
+
+- customer key
+- order or transaction key
+- transaction date
+- order value or revenue
+
+Typical thresholds:
+
+- `Ready`: stable customer key, transaction date, monetary value, and enough repeat behavior to rank customers.
+- `Usable with caveats`: customer/date/value exist but repeat behavior is sparse.
+- `Blocked`: no customer key or no transaction date.
+
+### CLV Scenario
+
+Useful fields:
+
+- customer or cohort key
+- revenue or ARPU
+- margin or contribution margin
+- retention, churn, repeat purchase, or lifetime proxy
+- acquisition cost or media cost
+
+Typical thresholds:
+
+- `Ready`: enough observed cohort behavior to replace at least retention/frequency and margin assumptions.
+- `Usable with caveats`: directional assumptions available but cohorts are immature.
+- `Blocked`: no value, margin, or retention/frequency assumption.
 
 ## Output Template
 
@@ -124,6 +197,9 @@ Useful fields:
 
 ### Best Next Command
 <command or workflow>
+
+### Can Proceed Now?
+<yes / yes with caveats / no, with one sentence>
 ```
 
 ## Guardrails

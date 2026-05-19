@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "marketing-analytics-pack",
+  "description": "Marketing analytics skills for planning analysis, checking data readiness, building measurement frameworks, running advanced marketing models, and packaging stakeholder-ready reports.",
+  "owner": {
+    "name": "Tamas Juhasz"
+  },
+  "plugins": [
+    {
+      "name": "marketing-analytics-pack",
+      "source": "./",
+      "description": "A coherent skills pack for analysts, marketers, growth owners, product owners, and founders who work with marketing data.",
+      "author": {
+        "name": "Tamas Juhasz"
+      }
+    }
+  ]
+}

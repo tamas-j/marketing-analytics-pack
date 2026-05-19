@@ -8,6 +8,12 @@
 
 ## Example Output
 
+The command first profiles the file:
+
+```bash
+python skills/data-readiness-checker/scripts/profile_data.py examples/data/mmm-weekly.csv --grain-key week_start
+```
+
 ## Data Readiness Check
 
 ### Verdict

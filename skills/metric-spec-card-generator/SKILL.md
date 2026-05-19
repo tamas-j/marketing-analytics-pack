@@ -33,6 +33,17 @@ If details are missing, create a sensible draft and mark assumptions clearly.
 9. Add QA checks that can catch common data issues.
 10. Include an example calculation if the user gave enough numbers.
 
+## Implementation Details
+
+Add these fields when the metric is likely to become a dashboard, data request, or recurring report:
+
+- Source of truth: the table, file, system, or report that should win if numbers disagree.
+- Owner: the team or person accountable for definition changes.
+- Refresh cadence: daily, weekly, monthly, campaign-close, or cohort maturity.
+- Timezone: especially for daily conversion, revenue, and event metrics.
+- Late data handling: whether late orders, refunds, cancellations, or delayed events backfill prior periods.
+- Version date: when the definition was agreed.
+
 ## Metric Types
 
 - `Outcome`: final business result, such as revenue, retained revenue, profit, churn, or customer growth.
@@ -65,6 +76,15 @@ Time window: <daily / weekly / monthly / campaign / cohort>
 ### Grain
 <one row per ... / calculated at ...>
 
+### Source of Truth
+<system, table, file, or report>
+
+### Refresh and Ownership
+Owner: <team/person>
+Cadence: <daily/weekly/monthly/etc.>
+Timezone: <timezone or unknown>
+Late data handling: <policy>
+
 ### Required Fields
 | Field | Why it is needed | Example |
 |---|---|---|
@@ -87,6 +107,9 @@ Time window: <daily / weekly / monthly / campaign / cohort>
 
 ### Example Calculation
 <short calculation, if possible>
+
+### Optional Implementation Logic
+<SQL-style pseudocode or aggregation steps, if fields are known>
 ```
 
 ## Common Metric Specs
@@ -115,6 +138,15 @@ Time window: <daily / weekly / monthly / campaign / cohort>
 - Clarify unique vs total clicks, bot filtering, delivered vs sent denominator, and attribution window.
 - Common guardrails: unsubscribe rate, complaint rate, conversion rate, fatigue.
 
+## Metric Anti-Patterns
+
+- A rate with no denominator.
+- A metric that mixes user, session, order, and event grains without a join rule.
+- A time-series metric with no timezone or late-data policy.
+- Platform-attributed conversions treated as the business source of truth.
+- Net and gross revenue definitions used interchangeably.
+- Cohort metrics compared before every cohort has had the same chance to mature.
+
 ## QA Checklist
 
 - Numerator and denominator can be reproduced from raw fields.
@@ -125,6 +157,8 @@ Time window: <daily / weekly / monthly / campaign / cohort>
 - Rate denominators cannot be zero.
 - The metric reconciles to at least one trusted source or known total.
 - A sudden change can be explained by components or data pipeline changes.
+
+For rates, also check denominator zeros. For revenue, reconcile gross, net, refunds, taxes, shipping, and discounts. For cohort metrics, confirm cohort start and maturity windows. For event metrics, check duplicate events and bot/internal traffic.
 
 ## Guardrails
 

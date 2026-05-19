@@ -22,9 +22,17 @@ You picked the **custom** style, branded from the executive template.
 
 ### What Changed
 
-`lib/styles/custom.yaml` now carries your brand block. The rest of the file
-remains structurally aligned with `default.yaml` so `lib/visualize.py`
-continues to read it cleanly.
+The command ran the safe updater:
+
+```bash
+python skills/style-picker/scripts/set_style.py \
+  --base executive \
+  --primary "#c026d3" \
+  --font "Inter" \
+  --clear-logo
+```
+
+`lib/styles/custom.yaml` now carries your brand block. The rest of the file remains structurally aligned with the bundled style files so `lib/visualize.py` continues to read it cleanly.
 
 ### Active Style
 
@@ -45,6 +53,12 @@ plt.rcParams.update(matplotlib_rc_params(style))
 That returns a palette led by your `#c026d3` primary, Inter typography,
 and the executive base tones for everything else (slate foreground,
 restrained grid, deep teal sequential ramp).
+
+For advanced runners and `/report`, pass:
+
+```bash
+--style custom
+```
 
 ### Reminder
 

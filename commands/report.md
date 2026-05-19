@@ -21,7 +21,7 @@ Use skill: "report-builder"
    - Prefer `pptx` when the user mentions a meeting, exec review, presentation, or share-out.
    - Use `pdf` for formal handoff.
 3. **Build the report:**
-   - For `html`: run `python skills/report-builder/scripts/build_html_report.py --input <md> --images <dir> --output <path> --title "<title>" --style <style>`. Pass `--auto-install` on first use if deps aren't installed.
+   - For `html`: run `python skills/report-builder/scripts/build_html_report.py --input <md> --images <dir> --output <path> --title "<title>" --style <style> --report-type <type>`. Pass `--auto-install` on first use if deps aren't installed.
    - For `docx`, `pptx`, `pdf`: use the runtime skill of the same name to convert the markdown + images into the requested format.
 4. **Confirm the file.** Tell the user the exact output path, file size, and a one-liner on how to share (open, attach, drop into Slack).
 5. **Offer a follow-up format** — many users want both an HTML for themselves and a DOCX or PPTX for the meeting.
@@ -49,4 +49,5 @@ Return:
 - Preserve every chart and table the source produced; if an image referenced in the markdown is missing from the images directory, flag it rather than silently dropping it.
 - Never bake credentials, PII, or raw customer rows into a public-shareable file without an explicit go-ahead.
 - For HTML, always pass `--style` so the report visually matches the chart outputs the user has seen earlier.
+- For HTML, pass `--report-type` when the source workflow is known (`kpi-tree`, `metric-spec`, `clv-scenario`, `journey-framework`, `forecast`, `mmm`, `rfm`, `post-mortem`). Use `auto` only when unsure.
 - Do not produce all four formats by default — pick one, offer one alternative.

@@ -7,17 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-05-19
+
 ### Added
+- `.claude-plugin/marketplace.json` so the repository can be added directly as a Claude plugin marketplace.
+- `style-picker` skill and `skills/style-picker/scripts/set_style.py` helper for safe custom style updates and optional preview charts.
+- `skills/data-readiness-checker/scripts/profile_data.py`, a stdlib CSV profiler for row count, missingness, date-like fields, and duplicate grain keys.
+- HTML report artifacts now support report types, audience/source/data metadata, previous-report labels for recurring readouts, and key-section highlight cards extracted from the source markdown.
 - **Sharing layer — `/report` command + `report-builder` skill.** Packages whatever the most recent skill produced (markdown summary, chart PNGs, runner output folder, or chat output captured to a temp file) into a single shareable file. Defaults to **HTML** — `skills/report-builder/scripts/build_html_report.py` renders the markdown, embeds every PNG / JPG / SVG from the images dir as a base64 data URI, and applies brand palette + typography from `lib/styles/` so the report visually matches the chart visuals. If the source markdown doesn't reference some discovered images, they're auto-appended under a "Charts" section so runner outputs always surface their visuals. **DOCX / PPTX / PDF** are produced by composing with the runtime `docx` / `pptx` / `pdf` skills — narrative for DOCX, one-slide-per-heading for PPTX, locked handoff for PDF. Smoke-tested end-to-end against the RFM runner output: 217 KB HTML file, 2 charts embedded, brand-styled. Deps for the HTML helper: `markdown` + `pyyaml` (PEP 668-aware `--auto-install`).
 - Five new chart patterns in the `data-visualization` reference skill: **Scatter** (RFM, CAC vs LTV, spend vs ROI), **Multi-Line** (MMM response curves, cohort retention), **Line With Interval / Fan** (forecasts and any line with an uncertainty band), **Waterfall** (suppression decomposition, list eligibility losses, revenue bridges), and **Overlap Matrix** (audience overlap heatmap, persona × channel reach). All five copy-paste cleanly, follow the existing token-loading idiom, and were smoke-tested locally. Added a "Pattern Selection Guide" table so Claude picks the right shape per situation.
-- `examples/check-data-example.md` — worked `/check-data` flow against `examples/data/mmm-weekly.csv`. Closes the gap where 26/27 commands had a worked example and the data-readiness front-door command didn't.
+- `examples/check-data-example.md` — worked `/check-data` flow against `examples/data/mmm-weekly.csv`, closing the previous data-readiness example gap.
 - `examples/report-example.md` — worked `/report` flow packaging an RFM run as HTML, with variations for PPTX (exec deck) and DOCX (narrative for comms).
 
 ### Changed
+- Bumped plugin manifest version to `0.2.1` so Claude Code update checks see this release.
 - **Audience framing widened.** README, CLAUDE.md, memory files, and the relevant skill / command bodies now describe the audience as "analysts, marketers, growth / lifecycle owners, product owners, founders — anyone who works with marketing data" rather than "non-technical marketing/analytics person." The bar is "understands the question, has or can get the data, would rather not hand-roll the analysis or chart code." Skill bodies still avoid assuming SQL / Python fluency.
+- README now reflects the current 28-command package, the `/report` sharing layer, and the direct marketplace manifest.
+- `main-analysis-planner` routes ambiguous user intents to concrete slash commands instead of prose skill names.
+- Front-door and Metrics skills now include stronger routing, profiling, implementation, scenario, and instrumentation guidance.
+- Bundled chart styles now use `DejaVu Sans` instead of `Arial` to avoid noisy matplotlib font fallback warnings on Linux.
 
 ### Removed
 - Stale `docs/CONTRIBUTING.md` duplicate. The current contributor guide lives at the repo root (`CONTRIBUTING.md`).
+- Stale `.gitkeep` files from `docs/` and `scripts/`.
 
 ## [0.2.0] - 2026-05-18
 
@@ -54,15 +66,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Forecasting command set: `/forecast-method` and `/forecast-runner` with Prophet as the runner target.
 - Worked Forecasting examples for method selection and runner specification.
 
-### Planned
-- Metrics cluster examples and screenshots for README polish
-- Diagnosis cluster examples and screenshots for README polish
-- Segmentation cluster examples and screenshots for README polish
-- Marketing operations cluster examples and screenshots for README polish
-- Advanced runners: RFM (pandas/scikit), Forecast (Prophet), MMM (Google Meridian)
-- Sample datasets + screenshot gallery for README and marketplace submission
-- `scripts/validate.py` for JSON / YAML / manifest sanity checks before push
-
 ## [0.1.1] - 2026-05-17
 
 ### Changed
@@ -87,7 +90,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `.gitignore` for Python and common editor / OS artefacts.
 - `CLAUDE.md` working memory capturing locked decisions, architecture, conventions, and visual style approach.
 
-[Unreleased]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/tamas-j/marketing-analytics-pack/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/tamas-j/marketing-analytics-pack/releases/tag/v0.1.0

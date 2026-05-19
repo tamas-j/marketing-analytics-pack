@@ -1,7 +1,7 @@
 {
   "name": "marketing-analytics-pack",
-  "version": "0.2.0",
-  "description": "A coherent skills pack that helps non-technical marketing and analytics people do real analytical work in Claude — guided by a main planner, validated by a data readiness checker, and rendered through a shared visual style system.",
+  "version": "0.2.1",
+  "description": "A coherent skills pack that helps analysts, marketers, growth owners, product owners, and founders turn marketing questions and CSVs into practical analysis, readiness checks, styled charts, and stakeholder-ready reports.",
   "author": {
     "name": "Tamas Juhasz"
   }

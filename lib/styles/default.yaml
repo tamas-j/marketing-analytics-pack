@@ -4,7 +4,7 @@ description: "Clean, readable charts for everyday marketing analysis."
 brand:
   primary_hex: "#2563eb"
   logo_path: ""
-  font_family: "Arial"
+  font_family: "DejaVu Sans"
 
 chart:
   background: "#ffffff"

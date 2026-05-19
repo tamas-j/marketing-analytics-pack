@@ -25,6 +25,16 @@ If the user lacks some numbers, create clearly labelled placeholder scenarios an
 
 Choose the simplest model that fits the business.
 
+## When Not To Use Simple CLV
+
+Use a fixed-horizon or cohort model instead of lifetime CLV when:
+
+- cohorts are too young to estimate mature churn or repeat purchase behavior
+- churn is changing quickly because pricing, onboarding, or product-market fit changed
+- revenue is seasonal or purchase cycles are long
+- margins differ materially by product, plan, channel, or discount
+- the decision is budget allocation across channels with very different customer quality
+
 ### Ecommerce Repeat Purchase CLV
 
 Use when customers make discrete purchases.
@@ -63,6 +73,8 @@ If detailed period values are not available:
 
 `gross CLV over horizon = average period revenue x gross margin x expected active periods`
 
+Use this for immature cohorts. Show `30-day`, `90-day`, `180-day`, and `12-month` value when the user has enough observed windows, and avoid extrapolating beyond the oldest mature cohort without a caveat.
+
 ### Lead Generation CLV
 
 Use when marketing creates leads that convert later.
@@ -89,6 +101,14 @@ For each scenario, show:
 - net CLV
 - CLV:CAC ratio
 - payback period, if possible
+
+Payback for recurring models:
+
+`payback periods = acquisition cost / (period ARPU x gross margin)`
+
+If incentives or onboarding costs are material, include them in the numerator.
+
+For channel decisions, prefer channel-specific CLV where possible. Paid social, affiliates, organic search, email, and referrals often have different retention, discount dependency, and support cost.
 
 ## Output Template
 

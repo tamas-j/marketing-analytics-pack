@@ -49,6 +49,22 @@ Use only the stages that fit the business:
 5. Flag data gaps that prevent stage-to-stage measurement.
 6. Recommend one first analysis that would improve decision-making fastest.
 
+## Journey Shapes by Business Model
+
+- Ecommerce: acquisition -> product engagement -> first purchase -> repeat purchase -> expansion/reactivation.
+- Subscription: acquisition -> signup -> activation -> habit formation -> retention -> expansion/reactivation.
+- B2B lead generation: awareness -> lead capture -> qualification -> sales acceptance -> opportunity -> closed won -> expansion.
+- Marketplace: demand and supply journeys run in parallel; measure liquidity, matching, trust, and repeat activity.
+- Media or content: reach -> visit -> engaged session -> registration/subscription -> return frequency -> advocacy.
+
+## Handoff Risk Library
+
+- Anonymous visitor to known customer: sessions cannot be stitched to orders or signups.
+- Lead to opportunity: marketing lead IDs do not survive CRM handoff.
+- First purchase to repeat: order data exists, but campaign exposure or lifecycle touches do not.
+- Trial to paid: activation events are tracked, but subscription billing is in another system.
+- Churn to reactivation: cancellation dates exist, but winback exposure and incentive usage are missing.
+
 ## Stage Metric Guide
 
 ### Awareness
@@ -114,6 +130,11 @@ Use only the stages that fit the business:
 
 ### Measurement Gaps
 - <gap and why it matters>
+
+### Instrumentation Needs
+| Event or field | Stage | Why it matters | Source or owner |
+|---|---|---|---|
+| <event/field> | <stage> | <reason> | <system/team> |
 
 ### Diagnostic Questions
 - <question>

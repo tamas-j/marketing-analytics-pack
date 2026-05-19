@@ -18,6 +18,8 @@ Ask only for what is missing:
 - **Format** — `html` (default), `docx`, `pptx`, or `pdf`.
 - **Title** — short report title; defaults to the source command or a sensible inferred title.
 - **Audience** — optional (analyst, marketer, executive, product owner); shapes tone and which sections get emphasised.
+- **Report type** — optional for HTML artifacts: `executive-summary`, `kpi-tree`, `metric-spec`, `clv-scenario`, `journey-framework`, `forecast`, `mmm`, `rfm`, `post-mortem`, or `generic`.
+- **Data source / previous report** — optional labels for recurring analysis or stakeholder traceability.
 - **Output path** — defaults to `report-out/<slug>-<timestamp>.<ext>`.
 
 If the user runs `/report` without arguments, default to HTML packaging of the most recent skill output in the conversation.
@@ -41,7 +43,7 @@ If the user has no preference and the output is narrative (no charts), prefer `d
    - For prompt-only skills, that means the markdown the previous command produced in chat — capture it as a temp file.
 2. **Confirm the format.** Honour the user's choice; otherwise pick from the Format Selection Guide and tell them why.
 3. **Build the report.**
-   - **HTML:** run `scripts/build_html_report.py` (see below).
+   - **HTML:** run `scripts/build_html_report.py` (see below). Prefer a report type when the source workflow is known so the artifact gets the right metadata label and highlight cards.
    - **DOCX:** use the runtime `docx` skill — pass the markdown source and any image paths.
    - **PPTX:** use the runtime `pptx` skill — one slide per top-level heading is a good default.
    - **PDF:** use the runtime `pdf` skill — convert the HTML if one already exists, otherwise build directly from markdown.
@@ -59,6 +61,11 @@ python skills/report-builder/scripts/build_html_report.py \
   --output <output html path> \
   [--title "<report title>"] \
   [--style default|executive|custom] \
+  [--report-type auto|executive-summary|kpi-tree|metric-spec|clv-scenario|journey-framework|forecast|mmm|rfm|post-mortem|generic] \
+  [--audience "<intended reader>"] \
+  [--source-label "<analysis source>"] \
+  [--data-source "<dataset or system>"] \
+  [--previous-report "<prior report path or label>"] \
   [--auto-install]
 ```
 
@@ -67,7 +74,24 @@ The helper:
 - Reads the markdown with the `markdown` library (auto-installed on first use if missing).
 - Embeds every PNG / JPG / SVG it finds in `--images` as a base64 data URI inline in the HTML.
 - Applies brand palette / typography from `lib/styles/<style>.yaml` (same source as the chart styles).
+- Adds a static artifact header with report type, audience, source, data source, style, chart count, and optional previous-report label.
+- Extracts up to four key-section cards from the source markdown based on report type. It does not invent new claims; it only lifts short snippets from existing sections.
 - Produces a single self-contained `.html` file the user can open in any browser, attach to email, or drop into a Slack DM.
+
+## HTML Artifact Types
+
+| Report type | Use for | Highlight sections |
+|---|---|---|
+| `kpi-tree` | KPI tree outputs | Executive Summary, KPI Tree, Diagnostic Questions, Recommended First Analysis |
+| `metric-spec` | Metric definition cards | Purpose, Definition, Formula, Caveats and Guardrails, QA Checks |
+| `clv-scenario` | CLV planning scenarios | Decision Summary, Scenario Results, Sensitivity Notes, Guardrails and Caveats |
+| `journey-framework` | Lifecycle or journey measurement | Journey Summary, Measurement Framework, Measurement Gaps, Recommended First Analysis |
+| `forecast` | Forecast runner outputs | Forecast Summary, Baseline Comparison, Caveats, Recommended Next Step |
+| `mmm` | MMM readouts | Executive Summary, ROI, Contribution, Response Curves, Caveats |
+| `rfm` | RFM runner outputs | Segment Profiles, Top Segment, Activation Recommendations, Caveats |
+| `post-mortem` | Campaign or performance reviews | Executive Summary, What Happened, Root Causes, Actions |
+
+Use `auto` if unsure; the helper detects common titles and section names. Use `generic` for one-off markdown that does not match a known workflow.
 
 ## DOCX / PPTX / PDF Composition
 
@@ -97,6 +121,12 @@ When the user wants `docx`, `pptx`, or `pdf`:
 
 ### Want this in another format?
 <offer of one alternative format>
+
+### Artifact metadata
+- Report type: <type>
+- Audience: <audience>
+- Data source: <source>
+- Previous report: <optional>
 ```
 
 ## Guardrails

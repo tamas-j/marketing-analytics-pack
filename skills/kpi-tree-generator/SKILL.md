@@ -109,6 +109,48 @@ North-star: `Incremental profitable customers`
   - Incremental lift
   - Margin after media cost
 
+### B2B Lead Generation
+
+North-star: `Sales-qualified pipeline`
+
+- Demand creation
+  - Qualified website sessions
+  - Content engagement
+  - Event or webinar attendance
+- Lead capture
+  - Form completion rate
+  - Cost per lead
+  - Lead source mix
+- Qualification
+  - MQL to SQL rate
+  - Sales acceptance rate
+  - Lead fit score
+- Pipeline quality
+  - Opportunity conversion rate
+  - Average deal value
+  - Sales cycle length
+
+### Marketplace Liquidity
+
+North-star: `Successful matches or transactions`
+
+- Supply
+  - Active sellers or providers
+  - Supply coverage by category or region
+  - Listing quality
+- Demand
+  - Active buyers
+  - Search or request volume
+  - Qualified demand rate
+- Matching efficiency
+  - Search-to-contact rate
+  - Request acceptance rate
+  - Time to match
+- Quality and trust
+  - Cancellation rate
+  - Repeat transaction rate
+  - Review or complaint rate
+
 ## Output Template
 
 ```markdown
@@ -144,3 +186,9 @@ Use the `data-visualization` skill for chart styling. If rendering a tree diagra
 - Data requirements are specific enough for the user to check a CSV or warehouse table.
 - Guardrails are included where optimization could create bad behavior.
 - The recommended first analysis is one concrete next step, not a broad research agenda.
+
+## Tree Quality Rubric
+
+- `Strong`: the north-star is a business outcome, level 1 drivers explain most movement, every metric has a formula or definition, and guardrails prevent obvious gaming.
+- `Usable`: the tree gives a practical first measurement framework but has some proxy metrics or missing data.
+- `Needs revision`: the tree is mostly a dashboard list, mixes outcomes with activities, or cannot explain how the business result moves.
