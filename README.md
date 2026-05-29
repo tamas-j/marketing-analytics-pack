@@ -2,7 +2,7 @@
 
 A coherent skills pack for the people who work with marketing data — analysts, marketers, growth and lifecycle owners, product owners, founders — to do real analytical work in Claude, guided by a main planner, validated by a data readiness checker, and rendered through a shared visual style system.
 
-> **Status:** 0.2.1 — 28 slash commands, three advanced runners (Prophet forecast, Google Meridian MMM, pandas/scikit RFM), shared visual style system, sample data, worked examples, and a `/report` sharing layer. Track progress in [CHANGELOG.md](./CHANGELOG.md).
+> **Status:** 0.4.0 — 30 slash commands, three advanced runners (Prophet forecast, Google Meridian MMM, pandas/scikit RFM), shared visual style system, sample data, worked examples, and a `/report` sharing layer. Track progress in [CHANGELOG.md](./CHANGELOG.md).
 
 ## Why this exists
 
@@ -34,7 +34,7 @@ Also planned for distribution via the official Anthropic plugin marketplace and 
 
 ## What's in the pack
 
-28 slash commands plus shared reference skills, across 7 analysis clusters and a sharing layer. The full checklist lives in the [URB-182 ticket](https://linear.app/urbsai/issue/URB-182/marketing-analytics-plugin-skills-pack-v1); high level:
+30 slash commands plus shared reference skills, across 7 analysis clusters and a sharing layer. The full checklist lives in the [URB-182 ticket](https://linear.app/urbsai/issue/URB-182/marketing-analytics-plugin-skills-pack-v1); high level:
 
 - **Front door** — Style picker, Main analysis planner, Data readiness checker
 - **Metrics** — KPI tree generator, Metric spec card generator, CLV scenario modeller, Customer journey measurement framework
@@ -43,6 +43,7 @@ Also planned for distribution via the official Anthropic plugin marketplace and 
 - **Experimentation** — Experiment design reviewer, Incrementality test designer, Attribution model selector, MMM readiness checker, MMM runner — Google Meridian *(advanced runner)*, MMM result interpreter
 - **Forecasting** — Forecast method selector, Forecast runner — Prophet *(advanced runner)*
 - **Marketing operations** — Suppression waterfall, Marketing taxonomy auditor, Frequency cap / fatigue analyser, NBA logic generator
+- **Measurement & review** — Measurement triangulation (blended MMM + incrementality + attribution), Results skeptic (adversarial pre-share review)
 - **Sharing** — Report builder for packaging markdown, charts, and runner outputs into HTML, DOCX, PPTX, or PDF
 
 ## Architecture
@@ -53,7 +54,7 @@ Every skill that produces visuals follows a **shared style system**: chart code 
 
 ## Advanced runners — environment setup
 
-Most of the 28 commands need nothing beyond the plugin itself. Three commands — `/forecast-runner` (Prophet), `/mmm-runner` (Google Meridian), and `/rfm-segment` (pandas / scikit) — ship in two modes:
+Most of the 30 commands need nothing beyond the plugin itself. Three commands — `/forecast-runner` (Prophet), `/mmm-runner` (Google Meridian), and `/rfm-segment` (pandas / scikit) — ship in two modes:
 
 - **Spec mode** is always available: Claude walks you through input schema, assumptions, validation plan, and expected outputs without executing anything. Works in every Claude surface, no setup.
 - **Execution mode** runs a real Python script under `skills/<runner>/scripts/` against a CSV and emits a folder of styled charts plus a numeric summary. It needs Python 3.10+ and a shell-capable Claude surface (Claude Code or Cowork — not pure web chat).

@@ -3,21 +3,21 @@
 Working memory for the `marketing-analytics-pack` plugin build. Future turns: read this first; deeper context lives in `memory/`.
 
 ## Project
-**Marketing Analytics Pack for Claude** (`marketing-analytics-pack`), v0.2.1, MIT.
-A coherent skills pack (28 slash commands + shared reference skills, across 7 clusters + a sharing layer) for anyone who works with marketing data — analysts, marketers, growth / lifecycle owners, product owners, founders. Three advanced runners (Prophet, Google Meridian, pandas/scikit RFM) ship with real execution from v0.2.0 onwards. A `/report` command packages any skill's output into HTML / DOCX / PPTX / PDF. Tracked in Linear as **URB-182** (parent: URB-181, project: Experiments, team: Urbsai).
+**Marketing Analytics Pack for Claude** (`marketing-analytics-pack`), v0.4.0, MIT.
+A coherent skills pack (30 slash commands + shared reference skills, across 7 clusters + a sharing layer) for anyone who works with marketing data — analysts, marketers, growth / lifecycle owners, product owners, founders. Three advanced runners (Prophet, Google Meridian, pandas/scikit RFM) ship with real execution from v0.2.0 onwards. A `/report` command packages any skill's output into HTML / DOCX / PPTX / PDF. Tracked in Linear as **URB-182** (parent: URB-181, project: Experiments, team: Urbsai).
 
 ## Locked decisions
 | Decision | Value |
 |----------|-------|
 | GitHub handle | `tamas-j` |
-| Repo | https://github.com/tamas-j/marketing-analytics-pack (live, v0.1.0 tagged; v0.1.1 manifest fix; v0.2.0 with real advanced runners; v0.2.1 marketplace/readiness polish) |
+| Repo | https://github.com/tamas-j/marketing-analytics-pack (live, v0.1.0 tagged; v0.1.1 manifest fix; v0.2.0 real advanced runners; v0.2.1 marketplace/readiness polish; v0.3.0 selector deepening; v0.4.0 triangulation/skeptic/pitfalls) |
 | Plugin name | `marketing-analytics-pack` (`-pack` suffix — `marketing-analytics` taken on claudepluginhub) |
 | Display name | "Marketing Analytics Pack for Claude" (README only — not a manifest field) |
 | License | MIT |
 | Manifest path | `.claude-plugin/plugin.json` — *not* `plugin.json` at the repo root (Anthropic convention) |
 | Manifest schema | Exactly 4 fields: `name`, `version`, `description`, `author`. Nothing else (no `displayName`, `keywords`, `categories`, `repository`, `skills`, etc.) |
 | Name regex | `^[a-z0-9][a-z0-9-]{1,63}$`, no hidden Unicode (marketplace invariants I10/I11) |
-| Initial version | 0.1.0 → 0.1.1 (manifest-path fix) → 0.2.0 (real Prophet / Meridian / RFM execution) → 0.2.1 (marketplace/readiness polish; see CHANGELOG) |
+| Initial version | 0.1.0 → 0.1.1 (manifest-path fix) → 0.2.0 (real Prophet / Meridian / RFM execution) → 0.2.1 (marketplace/readiness polish) → 0.3.0 (selector tier deepened) → 0.4.0 (triangulation / skeptic / pitfalls; see CHANGELOG) |
 | MMM library | **Google Meridian** (chosen over PyMC-Marketing) |
 | Forecast library | **Prophet** |
 | Data input scope (v1) | Files only — CSV / Excel / paste. DB access deferred, documented in README. |
@@ -99,7 +99,7 @@ marketing-analytics-pack/
 - **Marketing ops:** Suppression waterfall · Marketing taxonomy auditor · Frequency cap / fatigue analyser · NBA logic generator
 
 ## Success criteria (URB-182)
-- 28 commands implemented with consistent visual style, each with a practitioner-friendly SKILL.md
+- 30 commands implemented with consistent visual style, each with a practitioner-friendly SKILL.md
 - Plugin installable end-to-end on a fresh Claude install
 - Working example flow demonstrable on sample data
 - Published to GitHub with polished README
@@ -122,6 +122,9 @@ marketing-analytics-pack/
   - `skills/rfm-segment-generator/scripts/run_rfm.py` (pandas + optional scikit, ~430 lines) — Recency-Frequency-Monetary + named segments or k-means. Smoke-tested: 116 customers → 8 segments, Champions drive 33% of revenue from 15% of customers.
   - Shippability guardrails: PEP 668-aware `_install_deps()` (plain pip → `--user` → clear venv message), README "Advanced runners — environment setup" section, "Execution Mode Availability" table in each runner's SKILL.md so Claude knows to fall back to spec mode on web chat.
 - ✅ **0.2.1 (2026-05-19)** — marketplace/readiness polish: added `.claude-plugin/marketplace.json`, bumped manifest version, updated README counts and `/report` positioning, routed planner table to slash commands, switched default/custom fonts to DejaVu Sans, and removed stale `.gitkeep` files.
-- ⏭ **Next:** GitHub tag `v0.2.1`; marketplace submissions.
+- ✅ **0.3.0 (2026-05-19)** — selector tier deepened (Batch 1 of skills audit): the seven thinnest selector/reviewer skills rewritten with decision trees, worked examples, anti-patterns, ranked inputs, quality rubrics, and cross-skill routing.
+- ✅ **0.4.0 (2026-05-19)** — three cross-cutting skills (Batch 2): `measurement-triangulation` + `/triangulate`, `results-skeptic` + `/skeptic`, and `measurement-pitfalls` reference skill; planner routes to both new commands. Now 30 slash commands.
+- ✅ **0.4.0 readiness audit (2026-05-29)** — fixed README/CLAUDE version + command-count drift (0.2.1/28 → 0.4.0/30), added Skeptic/Triangulate to the README cluster list. `validate.py` passes; manifest and CHANGELOG in lockstep at 0.4.0; `tmp/` confirmed gitignored.
+- ⏭ **Next:** GitHub tag `v0.4.0` (tags currently stop at v0.1.1); marketplace submissions.
 
 → Deeper context: `memory/projects/marketing-analytics-pack.md`, `memory/context/build-conventions.md`, `memory/glossary.md`
